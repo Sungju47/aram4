@@ -1,167 +1,107 @@
-# app.py  — ARAM PS Dashboard (icons ready)
-# ----------------------------------------
-import os
-import re
+# app.py  — 파일 자동 감지 + 아이콘 표시 대시보드 (간결판)
+import os, re
 import pandas as pd
 import streamlit as st
 
 st.set_page_config(page_title="ARAM PS Dashboard", layout="wide")
 
-# ====== CSV 파일명 (레포 루트) ======
-PLAYERS_CSV = "aram_participants_with_icons_superlight.csv"
-ITEM_SUM_CSV = "item_summary_with_icons.csv"  # item, icon_url, total_picks, wins, win_rate
+# 1) 플레이어 CSV 자동 선택 (있으면 superlight 우선)
+PLAYER_CANDIDATES = [
+    "aram_participants_with_icons_superlight.csv",
+    "aram_participants_with_icons.csv",
+    "aram_participants_clean_preprocessed.csv",   # 최후 폴백(아이콘 없을 수 있음)
+]
+ITEM_SUM_CSV = "item_summary_with_icons.csv"
 
-# ====== 로더 ======
+def pick_first_exists(paths):
+    for p in paths:
+        if os.path.exists(p):
+            return p
+    return None
+
+PLAYERS_CSV = pick_first_exists(PLAYER_CANDIDATES)
+
+def _coerce_bool_to01(s: pd.Series) -> pd.Series:
+    s = s.astype(str).str.lower()
+    return s.isin(["1","true","t","yes","y"]).astype(int)
+
 @st.cache_data
 def load_players(path: str) -> pd.DataFrame:
-    if not os.path.exists(path):
-        raise FileNotFoundError(f"'{path}' 가 레포에 없습니다.")
+    if not path or not os.path.exists(path):
+        st.error(f"플레이어 CSV를 찾지 못했습니다. 현재 폴더: {os.listdir('.')}")
+        st.stop()
     df = pd.read_csv(path)
-
     # 승패 플래그
-    if "win" in df.columns:
-        df["win_clean"] = (
-            df["win"].astype(str).str.lower().isin(["true", "1", "t", "yes"]).astype(int)
-        )
-    else:
-        df["win_clean"] = 0
-
-    # 아이템 이름/아이콘 컬럼 정리
-    item_name_cols = [c for c in df.columns if re.fullmatch(r"item[0-6]_name", c)]
-    item_icon_cols = [c for c in df.columns if re.fullmatch(r"item[0-6]_icon", c)]
-    for c in item_name_cols + item_icon_cols:
-        df[c] = df[c].fillna("").astype(str).str.strip()
-
-    # 스펠/룬 이름 컬럼 기본값
-    for c in ["spell1", "spell2", "rune_core", "rune_sub", "rune_shards"]:
-        if c not in df.columns:
-            df[c] = ""
-
+    if "win_clean" not in df.columns:
+        if "win" in df.columns:
+            df["win_clean"] = _coerce_bool_to01(df["win"])
+        else:
+            df["win_clean"] = 0
+    # 문자열 정리
+    for c in df.columns:
+        if c.endswith("_name") or c.endswith("_name_fix"):
+            df[c] = df[c].fillna("").astype(str).str.strip()
     return df
 
-
 @st.cache_data
-def load_item_summary(path: str) -> pd.DataFrame:
-    if not os.path.exists(path):
-        # 없으면 빈 DF 반환(앱은 런타임 계산 결과만 사용하도록)
-        return pd.DataFrame(columns=["item", "icon_url", "total_picks", "wins", "win_rate"])
-    g = pd.read_csv(path)
-    # 안전 처리
-    for c in ["item", "icon_url"]:
-        if c in g.columns:
-            g[c] = g[c].fillna("").astype(str)
-    for c in ["total_picks", "wins", "win_rate"]:
-        if c in g.columns:
-            g[c] = pd.to_numeric(g[c], errors="coerce")
-    return g
-
-
-# ====== 통계 함수 ======
-@st.cache_data
-def compute_champion_agg(df: pd.DataFrame, champion: str) -> dict:
-    dsel = df[df["champion"] == champion].copy()
-    if dsel.empty:
-        return dict(games=0, winrate=0.0, pickrate=0.0)
-    games = len(dsel)
-    winrate = round(dsel["win_clean"].mean() * 100, 2)
-    pickrate = round(games / df["matchId"].nunique() * 100, 2) if "matchId" in df.columns else 0.0
-    return dict(games=games, winrate=winrate, pickrate=pickrate)
-
-
-@st.cache_data
-def compute_item_stats_for_champion(df: pd.DataFrame, champion: str) -> pd.DataFrame:
-    dsel = df[df["champion"] == champion].copy()
-    if dsel.empty:
-        return pd.DataFrame(columns=["icon_url", "item", "total_picks", "wins", "win_rate"])
-
-    name_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
-    icon_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_icon", c)]
-
-    stacks = []
+def load_item_summary(path: str, df: pd.DataFrame) -> pd.DataFrame:
+    # 1) 요약 CSV 있으면 그대로 사용
+    if os.path.exists(path):
+        g = pd.read_csv(path)
+        need = {"item","icon_url","total_picks","wins","win_rate"}
+        if need.issubset(g.columns):
+            return g
+        st.warning(f"`{path}` 컬럼 일부 누락 → 런타임 계산으로 대체")
+    # 2) 런타임 계산(아이템 아이콘이 없으면 빈 DF 반환)
+    name_cols = [c for c in df.columns if re.fullmatch(r"item[0-6]_name", c)]
+    icon_cols = [c for c in df.columns if re.fullmatch(r"item[0-6]_icon", c)]
+    if not name_cols or not icon_cols:
+        return pd.DataFrame(columns=["item","icon_url","total_picks","wins","win_rate"])
+    stacks=[]
     for i in range(7):
-        ncol = f"item{i}_name"
-        icol = f"item{i}_icon"
-        if ncol in dsel.columns and icol in dsel.columns:
-            tmp = dsel[[ncol, icol, "win_clean"]].rename(columns={ncol: "item", icol: "icon_url"})
+        n,f = f"item{i}_name", f"item{i}_icon"
+        if n in df.columns and f in df.columns:
+            tmp = df[[n,f,"matchId","win_clean"]].rename(columns={n:"item", f:"icon_url"})
             stacks.append(tmp)
-
     if not stacks:
-        return pd.DataFrame(columns=["icon_url", "item", "total_picks", "wins", "win_rate"])
-
+        return pd.DataFrame(columns=["item","icon_url","total_picks","wins","win_rate"])
     u = pd.concat(stacks, ignore_index=True)
-    u = u[u["item"].astype(str) != ""]
-    g = (
-        u.groupby(["item", "icon_url"])
-        .agg(total_picks=("item", "count"), wins=("win_clean", "sum"))
-        .reset_index()
-    )
-    g["win_rate"] = (g["wins"] / g["total_picks"] * 100).round(2)
-    g = g.sort_values(["total_picks", "win_rate"], ascending=[False, False])
-    return g
+    u = u[u["item"].astype(str).str.len()>0]
+    g = (u.groupby(["item","icon_url"])
+           .agg(total_picks=("matchId","count"), wins=("win_clean","sum"))
+           .reset_index())
+    g["win_rate"] = (g["wins"]/g["total_picks"]*100).round(2)
+    return g.sort_values(["total_picks","win_rate"], ascending=[False,False]).reset_index(drop=True)
 
+# ===== 데이터 로드 =====
+st.sidebar.caption(f"읽은 파일: **{PLAYERS_CSV}**")
+df = load_players(PLAYERS_CSV)
+item_sum = load_item_summary(ITEM_SUM_CSV, df)
 
-@st.cache_data
-def compute_spell_stats_for_champion(df: pd.DataFrame, champion: str) -> pd.DataFrame:
-    dsel = df[df["champion"] == champion].copy()
-    if dsel.empty or not {"spell1", "spell2"}.issubset(dsel.columns):
-        return pd.DataFrame(columns=["spell1", "spell2", "games", "wins", "win_rate"])
-    g = (
-        dsel.groupby(["spell1", "spell2"])
-        .agg(games=("spell1", "count"), wins=("win_clean", "sum"))
-        .reset_index()
-    )
-    g["win_rate"] = (g["wins"] / g["games"] * 100).round(2)
-    g = g.sort_values(["games", "win_rate"], ascending=[False, False])
-    return g
-
-
-@st.cache_data
-def compute_rune_stats_for_champion(df: pd.DataFrame, champion: str) -> pd.DataFrame:
-    dsel = df[df["champion"] == champion].copy()
-    cols = {"rune_core", "rune_sub", "rune_shards"}
-    if dsel.empty or not cols.issubset(dsel.columns):
-        return pd.DataFrame(columns=["rune_core", "rune_sub", "rune_shards", "games", "wins", "win_rate"])
-    g = (
-        dsel.groupby(["rune_core", "rune_sub", "rune_shards"])
-        .agg(games=("rune_core", "count"), wins=("win_clean", "sum"))
-        .reset_index()
-    )
-    g["win_rate"] = (g["wins"] / g["games"] * 100).round(2)
-    g = g.sort_values(["games", "win_rate"], ascending=[False, False])
-    return g
-
-
-# ====== 데이터 로드 ======
-with st.spinner("데이터 로딩 중..."):
-    df = load_players(PLAYERS_CSV)
-    item_sum_global = load_item_summary(ITEM_SUM_CSV)
-
-# ====== 사이드바 ======
+# ===== 사이드바 =====
 st.sidebar.title("ARAM PS Controls")
 champions = sorted(df["champion"].dropna().unique().tolist())
-default_idx = 0 if champions else None
-selected = st.sidebar.selectbox("Champion", champions, index=default_idx)
+selected = st.sidebar.selectbox("Champion", champions, index=0)
 
-# ====== 본문 ======
-st.title("ARAM PS Dashboard")
-if not selected:
-    st.info("좌측에서 챔피언을 선택해주세요.")
-    st.stop()
+# ===== 챔피언 요약 =====
+dsel = df[df["champion"]==selected].copy()
+games = len(dsel)
+total_matches = df["matchId"].nunique()
+winrate = round(dsel["win_clean"].mean()*100,2) if games else 0.0
+pickrate = round((dsel["matchId"].nunique()/total_matches)*100,2) if total_matches else 0.0
 
-# 상단 메트릭
-agg = compute_champion_agg(df, selected)
-m1, m2, m3 = st.columns(3)
-m1.metric("Games", f"{agg['games']}")
-m2.metric("Win Rate", f"{agg['winrate']}%")
-m3.metric("Pick Rate", f"{agg['pickrate']}%")
+c1,c2,c3 = st.columns(3)
+c1.metric("Games", games)
+c2.metric("Win Rate", f"{winrate}%")
+c3.metric("Pick Rate", f"{pickrate}%")
 st.markdown(f"### {selected}")
 
-# 1) 추천 아이템 (챔피언별)
-st.subheader("Recommended Items (Champion)")
-items_champ = compute_item_stats_for_champion(df, selected).head(20)
-if not items_champ.empty:
+# ===== 아이템 추천 =====
+st.subheader("Recommended Items")
+if len(item_sum):
+    top_items = item_sum.head(20)
     st.dataframe(
-        items_champ[["icon_url", "item", "total_picks", "wins", "win_rate"]],
+        top_items[["icon_url","item","total_picks","wins","win_rate"]],
         use_container_width=True,
         column_config={
             "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
@@ -169,59 +109,52 @@ if not items_champ.empty:
             "total_picks": "픽수",
             "wins": "승수",
             "win_rate": "승률(%)",
-        },
+        }
     )
 else:
-    st.info("아이템 정보가 없습니다.")
+    st.info("아이템 요약을 표시할 수 없습니다. (`item_summary_with_icons.csv` 확인)")
 
-# 2) 글로벌 아이템 요약 (선택 챔피언과 무관, 레퍼런스)
-st.subheader("Global Item Summary")
-if not item_sum_global.empty:
+# ===== 스펠 추천 =====
+st.subheader("Recommended Spell Combos")
+if {"spell1_icon","spell2_icon","spell1_name_fix","spell2_name_fix"}.issubset(dsel.columns):
+    sp = (dsel.groupby(["spell1_icon","spell1_name_fix","spell2_icon","spell2_name_fix"])
+            .agg(games=("matchId","count"), wins=("win_clean","sum")).reset_index())
+    sp["win_rate"] = (sp["wins"]/sp["games"]*100).round(2)
+    sp = sp.sort_values(["games","win_rate"], ascending=[False,False]).head(10)
     st.dataframe(
-        item_sum_global[["icon_url", "item", "total_picks", "wins", "win_rate"]].head(30),
+        sp[["spell1_icon","spell1_name_fix","spell2_icon","spell2_name_fix","games","wins","win_rate"]],
         use_container_width=True,
         column_config={
-            "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
-            "item": "아이템",
-            "total_picks": "픽수",
-            "wins": "승수",
-            "win_rate": "승률(%)",
-        },
+            "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
+            "spell2_icon": st.column_config.ImageColumn("스펠2", width="small"),
+            "spell1_name_fix": "스펠1",
+            "spell2_name_fix": "스펠2",
+            "games": "게임수","wins":"승수","win_rate":"승률(%)",
+        }
     )
 else:
-    st.caption("item_summary_with_icons.csv 가 없어서 글로벌 요약은 건너뜀(챔피언별 표만 표기).")
+    st.info("스펠 아이콘/이름 컬럼이 없습니다.")
 
-# 3) 스펠 조합
-st.subheader("Spell Combos")
-sp = compute_spell_stats_for_champion(df, selected).head(10)
-if not sp.empty:
+# ===== 룬 추천 =====
+st.subheader("Recommended Rune Combos")
+if {"rune_core_icon","rune_sub_icon","rune_core","rune_sub"}.issubset(dsel.columns):
+    ru = (dsel.groupby(["rune_core_icon","rune_core","rune_sub_icon","rune_sub"])
+            .agg(games=("matchId","count"), wins=("win_clean","sum")).reset_index())
+    ru["win_rate"] = (ru["wins"]/ru["games"]*100).round(2)
+    ru = ru.sort_values(["games","win_rate"], ascending=[False,False]).head(10)
     st.dataframe(
-        sp[["spell1", "spell2", "games", "wins", "win_rate"]],
-        use_container_width=True,
-        column_config={"spell1": "스펠1", "spell2": "스펠2", "games": "게임수", "wins": "승수", "win_rate": "승률(%)"},
-    )
-else:
-    st.info("스펠 정보가 없습니다.")
-
-# 4) 룬 조합
-st.subheader("Rune Combos")
-ru = compute_rune_stats_for_champion(df, selected).head(10)
-if not ru.empty:
-    st.dataframe(
-        ru[["rune_core", "rune_sub", "rune_shards", "games", "wins", "win_rate"]],
+        ru[["rune_core_icon","rune_core","rune_sub_icon","rune_sub","games","wins","win_rate"]],
         use_container_width=True,
         column_config={
-            "rune_core": "핵심룬",
-            "rune_sub": "보조트리",
-            "rune_shards": "파편",
-            "games": "게임수",
-            "wins": "승수",
-            "win_rate": "승률(%)",
-        },
+            "rune_core_icon": st.column_config.ImageColumn("핵심룬", width="small"),
+            "rune_sub_icon":  st.column_config.ImageColumn("보조트리", width="small"),
+            "rune_core":"핵심룬", "rune_sub":"보조트리",
+            "games":"게임수","wins":"승수","win_rate":"승률(%)",
+        }
     )
 else:
-    st.info("룬 정보가 없습니다.")
+    st.info("룬 아이콘/이름 컬럼이 없습니다.")
 
-# 5) 선택 챔피언 원본 로우 확인
+# ===== 원본 보기 =====
 with st.expander("Raw rows (selected champion)"):
-    st.dataframe(df[df["champion"] == selected], use_container_width=True)
+    st.dataframe(dsel, use_container_width=True)
