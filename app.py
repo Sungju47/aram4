@@ -215,25 +215,60 @@ if core_cols:
         g = g.sort_values(["games","win_rate"], ascending=[False,False])
         st.dataframe(g.head(20), use_container_width=True)
 
-# -------------------- 아이템 성과(아이콘 포함 가능) --------------------
-st.subheader("아이템 성과(슬롯 무시)")
-def item_stats(sub: pd.DataFrame) -> pd.DataFrame:
-    item_cols = [c for c in sub.columns if c.startswith("item") and not c.endswith("_icon")]
-    rec = []
-    for c in item_cols:
-        tmp = sub[["matchId","win_clean",c]].rename(columns={c:"item"})
-        tmp["slot"] = c
-        rec.append(tmp)
-    u = pd.concat(rec, ignore_index=True)
-    u = u[u["item"].astype(str)!=""]
+# -------------------- 아이템 성과(아이콘 포함) --------------------
+st.subheader("아이템 성과(슬롯 무시, 아이콘 렌더링)")
+
+def item_stats_with_icon(sub: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    # item0..item6 + 대응 아이콘(item0_icon..)
+    for i in range(7):
+        name_col = f"item{i}"
+        icon_col = f"item{i}_icon"
+        if name_col not in sub.columns:
+            continue
+        tmp = sub[[ "matchId", "win_clean", name_col ]].rename(columns={name_col: "item"})
+        tmp["icon"] = sub[icon_col] if icon_col in sub.columns else np.nan
+        rows.append(tmp)
+
+    if not rows:
+        return pd.DataFrame(columns=["item","icon","total_picks","wins","win_rate"])
+
+    u = pd.concat(rows, ignore_index=True)
+    # 빈 값/0/NaN 제거
+    u["item"] = u["item"].astype(str).str.strip()
+    u = u[(u["item"]!="") & (u["item"]!="0") & (u["item"]!="nan")]
+
+    # 아이콘은 첫 유효 URL 하나만 대표로 사용
+    def first_icon(x):
+        x = x.dropna().astype(str).str.strip()
+        return x.iloc[0] if len(x) else np.nan
+
     g = (u.groupby("item")
-         .agg(total_picks=("matchId","count"), wins=("win_clean","sum"))
-         .reset_index())
+           .agg(total_picks=("matchId","count"),
+                wins=("win_clean","sum"),
+                icon=("icon", first_icon))
+           .reset_index())
+
     g["win_rate"] = (g["wins"]/g["total_picks"]*100).round(2)
-    g = g.sort_values(["total_picks","win_rate"], ascending=[False,False])
+    g = g.sort_values(["total_picks","win_rate"], ascending=[False,False]).reset_index(drop=True)
     return g
 
-st.dataframe(item_stats(dfc).head(25), use_container_width=True)
+items_df = item_stats_with_icon(dfc)
+
+# st.dataframe 도 column_config를 받지만, data_editor가 이미지 렌더링이 더 안정적
+st.data_editor(
+    items_df.head(25),
+    use_container_width=True,
+    column_config={
+        "icon": st.column_config.ImageColumn("아이템", help="아이템 아이콘", width="small"),
+        "item": st.column_config.TextColumn("아이템 이름"),
+        "total_picks": st.column_config.NumberColumn("픽수", format="%d"),
+        "wins": st.column_config.NumberColumn("승수", format="%d"),
+        "win_rate": st.column_config.NumberColumn("승률(%)", format="%.2f"),
+    },
+    hide_index=True,
+)
+
 
 # -------------------- 스펠/룬 --------------------
 c1, c2 = st.columns(2)
