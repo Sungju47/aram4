@@ -30,12 +30,6 @@ def load_players(path: str) -> pd.DataFrame:
     if not _exists(path):
         st.stop()
     df = pd.read_csv(path, encoding='utf-8')
-
-        # 룬 이름 컬럼을 찾아 문자열을 정리합니다.
-    rune_cols = [c for c in df.columns if 'rune' in c.lower()]
-    for c in rune_cols:
-        if df[c].dtype == 'object':  # 문자열 컬럼만 처리
-            df[c] = df[c].astype(str).str.strip()
             
     # 승패 정리
     if "win_clean" not in df.columns:
@@ -102,6 +96,28 @@ def load_rune_icons(path: str) -> dict:
         ic = "rune_shard_icon" if "rune_shard_icon" in df.columns else ("rune_shards_icons" if "rune_shards_icons" in df.columns else None)
         if ic: shard_map = dict(zip(df["rune_shard"].astype(str), df[ic].astype(str)))
     return {"core": core_map, "sub": sub_map, "shards": shard_map}
+
+        # 룬 이름 컬럼을 찾아 문자열을 정리합니다.
+    rune_cols = [c for c in df.columns if 'rune' in c.lower()]
+    for c in rune_cols:
+        if df[c].dtype == 'object':  # 문자열 컬럼만 처리
+            df[c] = df[c].astype(str).str.strip()
+
+# load_rune_icons 함수 아래에 추가
+rune_maps = load_rune_icons(RUNE_CSV)
+core_map = rune_maps.get("core", {})
+sub_map = rune_maps.get("sub", {})
+
+# rune_icons.csv 에서 로드된 '여진'의 문자열 표현 확인
+st.write("rune_icons.csv에서 로드된 '여진':", repr(core_map.get('여진')))
+
+# aram_participants_with_icons_superlight.csv에서 로드된 '여진'이 포함된 행을 찾습니다.
+# 예시로 첫 번째 '여진' 행을 필터링합니다.
+first_yj_row = df[df['rune_core'] == '여진'].iloc[0]
+loaded_yj_name = first_yj_row['rune_core']
+
+# players.csv에서 로드된 '여진'의 문자열 표현 확인
+st.write("players.csv에서 로드된 '여진':", repr(loaded_yj_name))
 
 @st.cache_data
 def load_spell_icons(path: str) -> dict:
@@ -302,7 +318,6 @@ if games and {"rune_core","rune_sub"}.issubset(dsel.columns):
 else:
     st.info("룬 컬럼(rune_core, rune_sub)이 없습니다.")
 
-st.write("룬 이름:", dsel["rune_core"].unique())
 
 # ===== 원본(선택 챔피언) =====
 with st.expander("Raw rows (selected champion)"):
