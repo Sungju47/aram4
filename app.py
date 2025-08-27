@@ -31,6 +31,12 @@ def load_players(path: str) -> pd.DataFrame:
         st.stop()
     df = pd.read_csv(path, encoding='utf-8')
 
+        # 룬 이름 컬럼을 찾아 문자열을 정리합니다.
+    rune_cols = [c for c in df.columns if 'rune' in c.lower()]
+    for c in rune_cols:
+        if df[c].dtype == 'object':  # 문자열 컬럼만 처리
+            df[c] = df[c].astype(str).str.strip()
+            
     # 승패 정리
     if "win_clean" not in df.columns:
         if "win" in df.columns:
