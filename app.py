@@ -111,6 +111,14 @@ def load_spell_icons(path: str) -> dict:
             m = { _norm(n):i for n,i in zip(df.iloc[:,0].astype(str), df.iloc[:,1].astype(str)) }
     return m
 
+def _norm(name: str) -> str:
+    if not isinstance(name, str): return ""
+    s = name.lower().strip()
+    s = re.sub(r"[ '&.:]", "", s)
+    return s
+
+# spell_map 키 정규화
+spell_map = { _norm(row["name"]): row["icon_url"] for _, row in spell_df.iterrows() }
 # ===== 데이터 로드 =====
 df        = load_players(PLAYERS_CSV)
 item_sum  = load_item_summary(ITEM_SUM_CSV)
