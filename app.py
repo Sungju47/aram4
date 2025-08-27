@@ -302,6 +302,8 @@ if games and {"rune_core","rune_sub"}.issubset(dsel.columns):
 else:
     st.info("룬 컬럼(rune_core, rune_sub)이 없습니다.")
 
+st.write("룬 이름:", dsel["rune_core"].unique())
+
 # ===== 원본(선택 챔피언) =====
 with st.expander("Raw rows (selected champion)"):
     st.dataframe(dsel, use_container_width=True)
