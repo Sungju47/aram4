@@ -97,6 +97,12 @@ def load_rune_icons(path: str) -> dict:
         if ic: shard_map = dict(zip(df["rune_shard"].astype(str), df[ic].astype(str)))
     return {"core": core_map, "sub": sub_map, "shards": shard_map}
 
+# === 아래 코드 추가 ===
+rune_maps = load_rune_icons(RUNE_CSV)
+st.write("Loaded core runes:", list(rune_maps["core"].keys()))
+st.write("Loaded sub runes:", list(rune_maps["sub"].keys()))
+# === 추가 끝 ===
+
 @st.cache_data
 def load_spell_icons(path: str) -> dict:
     """스펠명(여러 형태) -> 아이콘 URL"""
