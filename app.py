@@ -106,12 +106,17 @@ sub_map = rune_maps.get("sub", {})
 st.write("rune_icons.csv에서 로드된 '여진':", repr(core_map.get('여진')))
 
 # aram_participants_with_icons_superlight.csv에서 로드된 '여진'이 포함된 행을 찾습니다.
-# 예시로 첫 번째 '여진' 행을 필터링합니다.
-first_yj_row = df[df['rune_core'] == '여진'].iloc[0]
-loaded_yj_name = first_yj_row['rune_core']
+
+# 이 코드를 삭제하거나, 아래 코드로 변경하여 오류를 방지합니다.
+first_yj_row = df[df['rune_core'] == '여진']
+if not first_yj_row.empty:
+    loaded_yj_name = first_yj_row.iloc[0]['rune_core']
+    st.write("players.csv에서 로드된 '여진':", repr(loaded_yj_name))
+else:
+    st.write("선택된 챔피언은 '여진' 룬 사용 기록이 없습니다.")
 
 # players.csv에서 로드된 '여진'의 문자열 표현 확인
-st.write("players.csv에서 로드된 '여진':", repr(loaded_yj_name))
+st.write("players.csv에서 로드된 '':", repr(loaded_yj_name))
 
 @st.cache_data
 def load_spell_icons(path: str) -> dict:
