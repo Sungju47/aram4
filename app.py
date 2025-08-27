@@ -97,12 +97,6 @@ def load_rune_icons(path: str) -> dict:
         if ic: shard_map = dict(zip(df["rune_shard"].astype(str), df[ic].astype(str)))
     return {"core": core_map, "sub": sub_map, "shards": shard_map}
 
-        # 룬 이름 컬럼을 찾아 문자열을 정리합니다.
-    rune_cols = [c for c in df.columns if 'rune' in c.lower()]
-    for c in rune_cols:
-        if df[c].dtype == 'object':  # 문자열 컬럼만 처리
-            df[c] = df[c].astype(str).str.strip()
-
 # load_rune_icons 함수 아래에 추가
 rune_maps = load_rune_icons(RUNE_CSV)
 core_map = rune_maps.get("core", {})
