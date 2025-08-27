@@ -29,7 +29,7 @@ def _norm(x: str) -> str:
 def load_players(path: str) -> pd.DataFrame:
     if not _exists(path):
         st.stop()
-    df = pd.read_csv(path)
+    df = pd.read_csv(path, encoding='utf-8')
 
     # 승패 정리
     if "win_clean" not in df.columns:
@@ -96,12 +96,6 @@ def load_rune_icons(path: str) -> dict:
         ic = "rune_shard_icon" if "rune_shard_icon" in df.columns else ("rune_shards_icons" if "rune_shards_icons" in df.columns else None)
         if ic: shard_map = dict(zip(df["rune_shard"].astype(str), df[ic].astype(str)))
     return {"core": core_map, "sub": sub_map, "shards": shard_map}
-
-# === 아래 코드 추가 ===
-rune_maps = load_rune_icons(RUNE_CSV)
-st.write("Loaded core runes:", list(rune_maps["core"].keys()))
-st.write("Loaded sub runes:", list(rune_maps["sub"].keys()))
-# === 추가 끝 ===
 
 @st.cache_data
 def load_spell_icons(path: str) -> dict:
