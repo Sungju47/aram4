@@ -202,7 +202,7 @@ if games and item_cols:
         st.dataframe(
             builds[[
                 "core1_icon","core1","core2_icon","core2","core3_icon","core3",
-                "games","wins","pick_rate","win_rate"
+                "pick_rate","win_rate","games",
             ]],
             use_container_width=True,
             column_config={
@@ -210,8 +210,7 @@ if games and item_cols:
                 "core2_icon": st.column_config.ImageColumn("코어2", width="small"),
                 "core3_icon": st.column_config.ImageColumn("코어3", width="small"),
                 "core1":"아이템1","core2":"아이템2","core3":"아이템3",
-                "games":"게임수","wins":"승수",
-                "pick_rate":"픽률(%)","win_rate":"승률(%)"
+                "pick_rate":"픽률(%)","win_rate":"승률(%)","games":"게임수",
             }
         )
     else:
