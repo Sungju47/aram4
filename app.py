@@ -261,31 +261,33 @@ if not dsel_core.empty:
     # 집계
     top_items = (
         dsel_core.groupby("item_norm", as_index=False)
-        .agg(total_picks=("item_norm","count"), wins=("win_clean","sum"))
+        .agg(games=("win_clean","count"), wins=("win_clean","sum"))
     )
-    top_items["win_rate"] = (top_items["wins"]/top_items["total_picks"]*100).round(2)
+    top_items["win_rate"] = (top_items["wins"]/top_items["games"]*100).round(2)
+    top_items["pick_rate"] = (top_items["games"]/games*100).round(2)
 
     # 아이콘 매핑 (원래 이름 기준)
     item_map = dict(zip(df_items["item_norm"], df_items["icon_url"]))
     top_items["icon_url"] = top_items["item_norm"].map(item_map)
 
     # 상위 20개
-    top_items = top_items.sort_values(["total_picks","win_rate"], ascending=[False, False]).head(20)
+    top_items = top_items.sort_values(["games","win_rate"], ascending=[False,False]).head(20)
 
-    # Streamlit 출력
+    # Streamlit 출력 (픽률, 승률, 게임수 순)
     st.dataframe(
-        top_items[["icon_url","item_norm","total_picks","wins","win_rate"]],
+        top_items[["icon_url","item_norm","pick_rate","win_rate","games"]],
         use_container_width=True,
         column_config={
             "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
             "item_norm": "아이템",
-            "total_picks": "픽수",
-            "wins": "승수",
-            "win_rate": "승률(%)"
+            "pick_rate": "픽률(%)",
+            "win_rate": "승률(%)",
+            "games": "게임수"
         }
     )
 else:
     st.info("선택 챔피언의 코어템 데이터가 없습니다.")
+
 
 # ===== 스펠 통계 (아이콘만 표시) =====
 st.subheader("스펠 통계")
