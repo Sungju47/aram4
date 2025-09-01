@@ -156,7 +156,11 @@ def is_boot(item: str) -> bool:
     return any(b in item_l for b in BOOT_KEYWORDS)
 
 # 코어 아이템 이름 집합
-df_core_item_names = set(item for item in ITEM_ICON_MAP if item)  # None/빈 값 제외
+CORE_ITEMS = set(
+    info.get("name")
+    for item_id, info in data.items()
+    if not info.get("into") and "Boots" not in info.get("tags", [])
+)
 
 if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
     core_builds = []
