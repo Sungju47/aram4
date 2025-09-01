@@ -427,7 +427,7 @@ if games and {"rune_core","rune_sub"}.issubset(dsel.columns):
     ru["rune_sub_icon"]  = ru["rune_sub"].apply(_rune_sub_icon)
 
     st.dataframe(
-        ru[["rune_core_icon","rune_sub_icon","pick_rate","win_rate","games"]].to_dict,
+        ru[["rune_core_icon","rune_sub_icon","pick_rate","win_rate","games"]].to_dict("records"),
         use_container_width=True,
         column_config={
             "rune_core_icon": st.column_config.ImageColumn("핵심룬", width="small"),
