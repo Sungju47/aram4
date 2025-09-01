@@ -164,7 +164,7 @@ if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
     union = union[union["item"].astype(str).str.strip() != ""]
 
     # 🔹 의미 없는 아이템 제거
-    union = union[~union["item"].astype(str).str.lower().isin(["idrk", "55", "0"])]
+    union = union[~union["item"].astype(str).str.lower().isin(["55", "0"])]
     
     top_items = (
         union.groupby("item")
