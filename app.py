@@ -149,7 +149,7 @@ c3.metric("Pick Rate", f"{pickrate}%")
 # ===== 코어템 3개 조합 추천 =====
 st.subheader("3코어 조합 통계")
 
-BOOT_KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화"]
+BOOT_KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화","군화","물약"]
 
 def is_boot(item: str) -> bool:
     item_l = str(item).lower()
