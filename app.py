@@ -146,6 +146,65 @@ c1.metric("Games", f"{games}")
 c2.metric("Win Rate", f"{winrate}%")
 c3.metric("Pick Rate", f"{pickrate}%")
 
+# ===== 코어템 3개 조합 추천 =====
+st.subheader("Core Item Builds (First 3 non-boot items)")
+
+BOOT_KEYWORDS = ["boots","greaves","shoes","신발","발걸음"]
+
+def is_boot(item: str) -> bool:
+    item_l = str(item).lower()
+    return any(b in item_l for b in BOOT_KEYWORDS)
+
+if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
+    core_builds = []
+
+    for _, row in dsel.iterrows():
+        items = [row[c] for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
+        items = [i for i in items if i and not is_boot(i)]  # 신발 제외
+        core = items[:3]  # 첫 3개 코어템
+        if len(core) == 3:
+            core_builds.append((tuple(core), row["win_clean"]))  # 승패도 같이 저장
+
+    if core_builds:
+        core_df = pd.DataFrame(core_builds, columns=["core","win_clean"])
+        core_df["core1"] = core_df["core"].apply(lambda x: x[0])
+        core_df["core2"] = core_df["core"].apply(lambda x: x[1])
+        core_df["core3"] = core_df["core"].apply(lambda x: x[2])
+
+        builds = (
+            core_df.groupby(["core1","core2","core3"])
+            .agg(games=("win_clean","count"), wins=("win_clean","sum"))
+            .reset_index()
+        )
+        builds["pick_rate"] = (builds["games"]/games*100).round(2)
+        builds["win_rate"] = (builds["wins"]/builds["games"]*100).round(2)
+
+        # 아이콘 매핑
+        builds["core1_icon"] = builds["core1"].map(ITEM_ICON_MAP)
+        builds["core2_icon"] = builds["core2"].map(ITEM_ICON_MAP)
+        builds["core3_icon"] = builds["core3"].map(ITEM_ICON_MAP)
+
+        # 🔹 정렬: 픽률 내림차순 → 승률 내림차순
+        builds = builds.sort_values(["pick_rate","win_rate"], ascending=[False, False]).head(3)
+
+        st.dataframe(
+            builds[[
+                "core1_icon","core1","core2_icon","core2","core3_icon","core3",
+                "games","wins","pick_rate","win_rate"
+            ]],
+            use_container_width=True,
+            column_config={
+                "core1_icon": st.column_config.ImageColumn("코어1", width="small"),
+                "core2_icon": st.column_config.ImageColumn("코어2", width="small"),
+                "core3_icon": st.column_config.ImageColumn("코어3", width="small"),
+                "core1":"아이템1","core2":"아이템2","core3":"아이템3",
+                "games":"게임수","wins":"승수",
+                "pick_rate":"픽률(%)","win_rate":"승률(%)"
+            }
+        )
+    else:
+        st.info("3개 코어템을 완성한 게임이 없습니다.")
+        
 # ===== 아이템 추천 =====
 st.subheader("Recommended Items")
 if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
