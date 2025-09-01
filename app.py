@@ -255,7 +255,7 @@ dsel_long = pd.melt(
 # 포로 간식, 부츠 제외, 코어템만 필터링
 dsel_core = dsel_long[
     dsel_long["item_norm"].isin(core_items_set) &
-    (~dsel_long["item_norm"].isin(["포로 간식","물약"]))
+    (~dsel_long["item_norm"].isin(["포로 간식","물약","수당"]))
 ]
 
 if not dsel_core.empty:
