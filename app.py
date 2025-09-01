@@ -157,6 +157,8 @@ item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
 
 def is_core_item(item_name: str) -> bool:
     """CSV 기준: 코어템인지, 부츠인지 판단. 없으면 False 처리"""
+    if not item_name or item_name == "포로 간식":
+        return False
     sub = df_items[df_items["item"] == item_name]
     if sub.empty:
         return False
