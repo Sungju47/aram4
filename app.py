@@ -421,18 +421,20 @@ if games and {"rune_core","rune_sub"}.issubset(dsel.columns):
         .reset_index()
     )
     ru["win_rate"] = (ru["wins"]/ru["games"]*100).round(2)
-    ru = ru.sort_values(["games","win_rate"], ascending=[False,False]).head(10)
+    ru["pick_rate"] = (ru["games"]/games*100).round(2)  # 전체 선택 게임 대비 비율
+    ru = ru.sort_values(["pick_rate","win_rate"], ascending=[False,False]).head(10)
     ru["rune_core_icon"] = ru["rune_core"].apply(_rune_core_icon)
     ru["rune_sub_icon"]  = ru["rune_sub"].apply(_rune_sub_icon)
 
     st.dataframe(
-        ru[["rune_core_icon","rune_core","rune_sub_icon","rune_sub","games","wins","win_rate"]].to_dict("records"),
+        ru[["rune_core_icon","rune_sub_icon","pick_rate","win_rate","games"]].to_dict,
         use_container_width=True,
         column_config={
             "rune_core_icon": st.column_config.ImageColumn("핵심룬", width="small"),
             "rune_sub_icon":  st.column_config.ImageColumn("보조트리", width="small"),
-            "rune_core":"핵심룬 이름","rune_sub":"보조트리 이름",
-            "games":"게임수","wins":"승수","win_rate":"승률(%)"
+            "pick_rate":"픽률(%)",
+            "win_rate":"승률(%)",
+            "games":"게임수"
         }
     )
 else:
