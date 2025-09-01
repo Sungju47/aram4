@@ -200,11 +200,11 @@ if games and item_cols:
         builds = builds.sort_values(["pick_rate","win_rate"], ascending=[False, False]).head(3)
 
         st.dataframe(
-            builds[[
+            builds.reset_index(drop=True)[[
                 "core1_icon","core1","core2_icon","core2","core3_icon","core3",
                 "pick_rate","win_rate","games",
             ]],
-            use_container_width=True,hide_index=True
+            use_container_width=True
             column_config={
                 "core1_icon": st.column_config.ImageColumn("코어1", width="small"),
                 "core2_icon": st.column_config.ImageColumn("코어2", width="small"),
@@ -275,8 +275,8 @@ if not dsel_core.empty:
 
     # Streamlit 출력 (픽률, 승률, 게임수 순)
     st.dataframe(
-        top_items[["icon_url","item_norm","pick_rate","win_rate","games"]],
-        use_container_width=True,hide_index=True
+        top_items.reset_index(drop=True)[["icon_url","item_norm","pick_rate","win_rate","games"]],
+        use_container_width=True
         column_config={
             "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
             "item_norm": "아이템",
