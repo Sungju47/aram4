@@ -156,11 +156,12 @@ def is_boot(item: str) -> bool:
     return any(b in item_l for b in BOOT_KEYWORDS)
 
 # 코어 아이템 이름 집합
-CORE_ITEMS = set(
-    info.get("name")
-    for item_id, info in data.items()
-    if not info.get("into") and "Boots" not in info.get("tags", [])
-)
+
+# CSV 기준 필터
+items = [row[c] for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
+items = [i for i in items if i and not df_items.loc[df_items["name"]==i, "is_boot"].any()]
+items = [i for i in items if i and df_items.loc[df_items["name"]==i, "is_core"].any()]
+core = items[:3]  # 순서 유지
 
 if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
     core_builds = []
