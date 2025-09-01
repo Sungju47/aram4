@@ -217,59 +217,74 @@ if games and item_cols:
     else:
         st.info("3개 코어템을 완성한 게임이 없습니다.")
         
-# ===== 코어템 통계 =====
-st.subheader("코어템 통계 (부츠/포로 간식 제외)")
+# ===== 코어템 3개 조합 추천 =====
+st.subheader("3코어 조합 통계")
 
-# CSV 불러오기
+# dsel: 선택 챔피언 데이터 (이미 필터링된 DataFrame)
+# df_items: item_summary CSV (item, is_core, is_boots 컬럼 포함)
 df_items = pd.read_csv(ITEM_SUM_CSV)
 
-# bool로 변환 (문자열, int 모두 처리)
-df_items["is_core"]  = df_items["is_core"].astype(bool)
-df_items["is_boots"] = df_items["is_boots"].astype(bool)
-
-# 코어템 + 부츠 제외
-core_items_set = set(df_items.loc[df_items["is_core"] & (~df_items["is_boots"]), "item"])
-
-# dsel에서 아이템 컬럼만 추출
 item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
 
+def is_core_item(item_name: str) -> bool:
+    """CSV 기준: 코어템인지, 부츠인지 판단. 없으면 False 처리"""
+    sub = df_items[df_items["item"] == item_name]
+    if sub.empty:
+        return False
+    # 문자열/숫자 -> boolean 변환
+    is_core = str(sub["is_core"].iloc[0]).strip().lower() in ["true","1","yes"]
+    is_boots = str(sub["is_boots"].iloc[0]).strip().lower() in ["true","1","yes"]
+    return is_core and not is_boots
+
 if games and item_cols:
-    stacks = []
-    for c in item_cols:
-        tmp = dsel[[c, "win_clean"]].rename(columns={c: "item"})
-        # 1) 비어있는 값 제거, 2) 포로 간식 제외, 3) 코어템 필터링
-        tmp = tmp[tmp["item"].astype(str).str.strip() != ""]
-        tmp = tmp[~tmp["item"].isin(["포로 간식"])]
-        tmp = tmp[tmp["item"].isin(core_items_set)]
-        stacks.append(tmp)
+    core_builds = []
 
-    if stacks:
-        union = pd.concat(stacks, ignore_index=True)
+    for _, row in dsel.iterrows():
+        items = [row[c] for c in item_cols if row[c]]  # 비어있는 값 제거
+        # CSV 기준 코어템만, 부츠 제외, 순서 유지
+        items = [i for i in items if is_core_item(i)]
+        core = items[:3]  # 첫 3개만
+        if len(core) == 3:
+            core_builds.append((tuple(core), row["win_clean"]))
 
-        top_items = (
-            union.groupby("item")
-            .agg(total_picks=("item","count"), wins=("win_clean","sum"))
+    if core_builds:
+        core_df = pd.DataFrame(core_builds, columns=["core","win_clean"])
+        core_df["core1"] = core_df["core"].apply(lambda x: x[0])
+        core_df["core2"] = core_df["core"].apply(lambda x: x[1])
+        core_df["core3"] = core_df["core"].apply(lambda x: x[2])
+
+        # 조합별 통계
+        builds = (
+            core_df.groupby(["core1","core2","core3"])
+            .agg(games=("win_clean","count"), wins=("win_clean","sum"))
             .reset_index()
         )
-        top_items["win_rate"] = (top_items["wins"]/top_items["total_picks"]*100).round(2)
-        top_items["icon_url"] = top_items["item"].map(ITEM_ICON_MAP)
-        top_items = top_items.sort_values(["total_picks","win_rate"], ascending=[False, False]).head(20)
+        builds["pick_rate"] = (builds["games"]/games*100).round(2)
+        builds["win_rate"] = (builds["wins"]/builds["games"]*100).round(2)
 
+        # 아이콘 매핑
+        builds["core1_icon"] = builds["core1"].map(ITEM_ICON_MAP)
+        builds["core2_icon"] = builds["core2"].map(ITEM_ICON_MAP)
+        builds["core3_icon"] = builds["core3"].map(ITEM_ICON_MAP)
+
+        # 정렬: 픽률 내림차순 → 승률 내림차순, 상위 3개
+        builds = builds.sort_values(["pick_rate","win_rate"], ascending=[False, False]).head(3)
+
+        # Streamlit 출력
         st.dataframe(
-            top_items[["icon_url","item","total_picks","wins","win_rate"]],
+            builds[[
+                "core1_icon","core1","core2_icon","core2","core3_icon","core3",
+                "games","wins","pick_rate","win_rate"
+            ]],
             use_container_width=True,
             column_config={
-                "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
-                "item": "아이템",
-                "total_picks": "픽수",
-                "wins": "승수",
-                "win_rate": "승률(%)"
-            }
-        )
-    else:
-        st.info("선택 챔피언의 코어템 데이터가 없습니다.")
-else:
-    st.info("아이템 이름 컬럼(item0_name~item6_name)이 없어 챔피언별 아이템 집계를 만들 수 없습니다.")
+                "core1_icon": st.column_config.ImageColumn("코어1", width="small"),
+                "core2_icon": st.column_config.ImageColumn("코어2", width="small"),
+                "core3_icon": st.column_config.ImageColumn("코어3", width="small"),
+                "core1":"아이템1","core2":"아이템2","core3":"아이템3",
+                "games":"게임수","wins":"승수",
+                "pick_rate":"픽률_
+
 
 
 # ===== 스펠 추천 (무순서 집계) =====
