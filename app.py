@@ -275,7 +275,7 @@ if not dsel_core.empty:
 
     # Streamlit 출력 (픽률, 승률, 게임수 순)
     st.dataframe(
-        top_items.reset_index(drop=True)[["icon_url","item_norm","pick_rate","win_rate","games"]],
+        top_items.reset_index(drop=True)[["icon_url","item_norm","pick_rate","win_rate","games"]].to_dict("records"),
         use_container_width=True,
         column_config={
             "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
@@ -347,7 +347,7 @@ if games and s1 and s2:
     sp["spell2_icon"] = sp["s2_std"].apply(ddragon_spell_icon)
 
     st.dataframe(
-        sp[["spell1_icon","spell2_icon","win_rate","games"]],
+        sp[["spell1_icon","spell2_icon","win_rate","games"]].to_dict("records"),
         use_container_width=True,
         column_config={
             "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
@@ -381,7 +381,7 @@ if games and {"rune_core","rune_sub"}.issubset(dsel.columns):
     ru["rune_sub_icon"]  = ru["rune_sub"].apply(_rune_sub_icon)
 
     st.dataframe(
-        ru[["rune_core_icon","rune_core","rune_sub_icon","rune_sub","games","wins","win_rate"]],
+        ru[["rune_core_icon","rune_core","rune_sub_icon","rune_sub","games","wins","win_rate"]].to_dict("records"),
         use_container_width=True,
         column_config={
             "rune_core_icon": st.column_config.ImageColumn("핵심룬", width="small"),
