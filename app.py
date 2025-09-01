@@ -283,9 +283,11 @@ if games and item_cols:
                 "core3_icon": st.column_config.ImageColumn("코어3", width="small"),
                 "core1":"아이템1","core2":"아이템2","core3":"아이템3",
                 "games":"게임수","wins":"승수",
-                "pick_rate":"픽률_
-
-
+                "pick_rate":"픽률(%)","win_rate":"승률(%)"
+            }
+        )
+    else:
+        st.info("3개 코어템을 완성한 게임이 없습니다.")
 
 # ===== 스펠 추천 (무순서 집계) =====
 st.subheader("스펠 통계")
