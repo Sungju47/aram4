@@ -7,7 +7,7 @@ st.set_page_config(page_title="ARAM PS Dashboard", layout="wide")
 
 # ===== 파일 경로(리포 루트) =====
 PLAYERS_CSV   = "aram_participants_with_icons_superlight.csv"  # 참가자 행 데이터
-ITEM_SUM_CSV  = "item_summary_with_icons.csv"                  # item, icon_url, total_picks, wins, win_rate
+ITEM_SUM_CSV  = "item_summary.csv"                  # item, icon_url, total_picks, wins, win_rate
 CHAMP_CSV     = "champion_icons.csv"                           # champion, champion_icon (또는 icon/icon_url)
 RUNE_CSV      = "rune_icons.csv"                               # rune_core, rune_core_icon, rune_sub, rune_sub_icon
 SPELL_CSV     = "spell_icons.csv"                              # 스펠 이름 ↔ 아이콘 URL
@@ -149,21 +149,26 @@ c3.metric("Pick Rate", f"{pickrate}%")
 # ===== 코어템 3개 조합 추천 =====
 st.subheader("3코어 조합 통계")
 
-BOOT_KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화","군화","물약"]
+BOOT_KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화","군화","물약","영약"]
 
 def is_boot(item: str) -> bool:
     item_l = str(item).lower()
     return any(b in item_l for b in BOOT_KEYWORDS)
 
+# 코어 아이템 이름 집합
+df_core_item_names = set(item for item in ITEM_ICON_MAP if item)  # None/빈 값 제외
+
 if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
     core_builds = []
 
     for _, row in dsel.iterrows():
+        # 아이템 리스트
         items = [row[c] for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
-        items = [i for i in items if i and not is_boot(i)]  # 신발 제외
-        core = items[:3]  # 첫 3개 코어템
+        items = [i for i in items if i and not is_boot(i)]        # 신발 제외
+        items = [i for i in items if i in df_core_item_names]     # 코어아이템만
+        core = items[:3]  # 순서 유관하게 첫 3개만
         if len(core) == 3:
-            core_builds.append((tuple(core), row["win_clean"]))  # 승패도 같이 저장
+            core_builds.append((tuple(core), row["win_clean"]))
 
     if core_builds:
         core_df = pd.DataFrame(core_builds, columns=["core","win_clean"])
