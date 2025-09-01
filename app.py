@@ -291,6 +291,14 @@ else:
 # ===== 스펠 추천 (아이콘만) =====
 st.subheader("스펠 통계 (아이콘)")
 
+def pick_spell_cols(df_):
+    if {"spell1_name_fix","spell2_name_fix"}.issubset(df_.columns):
+        return "spell1_name_fix", "spell2_name_fix"
+    if {"spell1","spell2"}.issubset(df_.columns):
+        return "spell1", "spell2"
+    cands = [c for c in df_.columns if "spell" in c.lower()]
+    return (cands[0], cands[1]) if len(cands) >= 2 else (None, None)
+
 s1, s2 = pick_spell_cols(dsel)
 if games and s1 and s2:
     # 정규화된 무순서 키로 집계
