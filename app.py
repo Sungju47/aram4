@@ -147,19 +147,14 @@ c2.metric("Win Rate", f"{winrate}%")
 c3.metric("Pick Rate", f"{pickrate}%")
 
 # ===== 코어템 3개 조합 추천 =====
+# ===== 코어템 3개 조합 추천 =====
 st.subheader("3코어 조합 통계")
-
-KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화","군화","물약","영약"]
-
-def is_boot(item: str) -> bool:
-    item_l = str(item).lower()
-    return any(b in item_l for b in KEYWORDS)
 
 # dsel: 선택 챔피언 데이터 (이미 필터링된 DataFrame)
 # df_items: item_summary CSV (item, is_core, is_boot 컬럼 포함)
 df_items = pd.read_csv(ITEM_SUM_CSV)
 
-item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_item", c)]
+item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
 
 if games and item_cols:
     core_builds = []
@@ -168,12 +163,12 @@ if games and item_cols:
         # 아이템 리스트
         items = [row[c] for c in item_cols]
 
-        # 1) 신발 제외 2) CSV 기준 코어템만
+        # CSV 기준 1) 신발 제외 2) 코어템만
         items = [
             i for i in items 
             if i 
-            and not df_items.loc[df_items["item"]==i, "is_boot"].any() 
             and df_items.loc[df_items["item"]==i, "is_core"].any()
+            and not df_items.loc[df_items["item"]==i, "is_boot"].any()
         ]
 
         # 순서 유지, 첫 3개
