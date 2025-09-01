@@ -7,7 +7,7 @@ st.set_page_config(page_title="ARAM PS Dashboard", layout="wide")
 
 # ===== 파일 경로(리포 루트) =====
 PLAYERS_CSV   = "aram_participants_with_icons_superlight.csv"  # 참가자 행 데이터
-ITEM_SUM_CSV  = "item_summary.csv"                  # item, icon_url, total_picks, wins, win_rate
+ITEM_SUM_CSV  = "item_summary.csv"                  # item, icon_url, total_picks, wins, win_rate,+@
 CHAMP_CSV     = "champion_icons.csv"                           # champion, champion_icon (또는 icon/icon_url)
 RUNE_CSV      = "rune_icons.csv"                               # rune_core, rune_core_icon, rune_sub, rune_sub_icon
 SPELL_CSV     = "spell_icons.csv"                              # 스펠 이름 ↔ 아이콘 URL
@@ -157,6 +157,7 @@ def is_boot(item: str) -> bool:
 
 # dsel: 선택 챔피언 데이터 (이미 필터링된 DataFrame)
 # df_items: item_summary CSV (name, is_core, is_boot 컬럼 포함)
+df_items = pd.read_csv(ITEM_SUM_CSV)
 
 item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
 
