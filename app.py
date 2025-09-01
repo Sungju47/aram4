@@ -156,10 +156,10 @@ def is_boot(item: str) -> bool:
     return any(b in item_l for b in KEYWORDS)
 
 # dsel: 선택 챔피언 데이터 (이미 필터링된 DataFrame)
-# df_items: item_summary CSV (name, is_core, is_boot 컬럼 포함)
+# df_items: item_summary CSV (item, is_core, is_boot 컬럼 포함)
 df_items = pd.read_csv(ITEM_SUM_CSV)
 
-item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
+item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_item", c)]
 
 if games and item_cols:
     core_builds = []
@@ -172,8 +172,8 @@ if games and item_cols:
         items = [
             i for i in items 
             if i 
-            and not df_items.loc[df_items["name"]==i, "is_boot"].any() 
-            and df_items.loc[df_items["name"]==i, "is_core"].any()
+            and not df_items.loc[df_items["item"]==i, "is_boot"].any() 
+            and df_items.loc[df_items["item"]==i, "is_core"].any()
         ]
 
         # 순서 유지, 첫 3개
