@@ -147,7 +147,6 @@ c2.metric("Win Rate", f"{winrate}%")
 c3.metric("Pick Rate", f"{pickrate}%")
 
 # ===== 코어템 3개 조합 추천 =====
-# ===== 코어템 3개 조합 추천 =====
 st.subheader("3코어 조합 통계")
 
 # dsel: 선택 챔피언 데이터 (이미 필터링된 DataFrame)
@@ -156,23 +155,21 @@ df_items = pd.read_csv(ITEM_SUM_CSV)
 
 item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
 
+def is_core_item(item_name: str) -> bool:
+    """CSV 기준: 코어템인지, 부츠인지 판단. 없으면 False 처리"""
+    sub = df_items[df_items["item"] == item_name]
+    if sub.empty:
+        return False
+    return bool(sub["is_core"].any()) and not bool(sub["is_boot"].any())
+
 if games and item_cols:
     core_builds = []
 
     for _, row in dsel.iterrows():
-        # 아이템 리스트
-        items = [row[c] for c in item_cols]
-
-        # CSV 기준 1) 신발 제외 2) 코어템만
-        items = [
-            i for i in items 
-            if i 
-            and df_items.loc[df_items["item"]==i, "is_core"].any()
-            and not df_items.loc[df_items["item"]==i, "is_boot"].any()
-        ]
-
-        # 순서 유지, 첫 3개
-        core = items[:3]
+        items = [row[c] for c in item_cols if row[c]]  # 비어있는 값 제거
+        # CSV 기준 코어템만, 부츠 제외, 순서 유지
+        items = [i for i in items if is_core_item(i)]
+        core = items[:3]  # 첫 3개만
         if len(core) == 3:
             core_builds.append((tuple(core), row["win_clean"]))
 
@@ -199,7 +196,6 @@ if games and item_cols:
         # 정렬: 픽률 내림차순 → 승률 내림차순, 상위 3개
         builds = builds.sort_values(["pick_rate","win_rate"], ascending=[False, False]).head(3)
 
-        # Streamlit 출력
         st.dataframe(
             builds[[
                 "core1_icon","core1","core2_icon","core2","core3_icon","core3",
