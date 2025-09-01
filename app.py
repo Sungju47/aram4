@@ -334,61 +334,75 @@ with col1:
 
     s1, s2 = pick_spell_cols(dsel)
 
-    if games and s1 and s2:
-        tmp = dsel[[s1, s2, "win_clean"]].copy()
-        tmp["s1_std"], tmp["s2_std"] = zip(*tmp.apply(lambda r: canonical_pair(r[s1], r[s2]), axis=1))
+# --- 스펠 통계 (픽률 추가) ---
+if games and s1 and s2:
+    tmp = dsel[[s1, s2, "win_clean"]].copy()
+    tmp["s1_std"], tmp["s2_std"] = zip(*tmp.apply(lambda r: canonical_pair(r[s1], r[s2]), axis=1))
+    
+    sp = (
+        tmp.groupby(["s1_std","s2_std"], as_index=False)
+           .agg(games=("win_clean","count"), wins=("win_clean","sum"))
+    )
+    sp["win_rate"] = (sp["wins"]/sp["games"]*100).round(2)
+    sp["pick_rate"] = (sp["games"]/games*100).round(2)  # 전체 선택 게임 대비 비율
+    sp = sp.sort_values(["pick_rate","win_rate"], ascending=[False,False]).head(10)
+    
+    sp["spell1_icon"] = sp["s1_std"].apply(ddragon_spell_icon)
+    sp["spell2_icon"] = sp["s2_std"].apply(ddragon_spell_icon)
+else:
+    sp = pd.DataFrame(columns=["s1_std","s2_std","spell1_icon","spell2_icon","pick_rate","win_rate","games"])
 
-        sp = (
-            tmp.groupby(["s1_std","s2_std"], as_index=False)
-               .agg(games=("win_clean","count"), wins=("win_clean","sum"))
-        )
-        sp["win_rate"] = (sp["wins"]/sp["games"]*100).round(2)
-        sp = sp.sort_values(["games","win_rate"], ascending=[False,False]).head(10)
+# --- 신발 처리 (픽률 포함) ---
+boots_set = set(df_items.loc[df_items["is_boots"], "item"].astype(str).str.strip())
+item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
 
-        sp["spell1_icon"] = sp["s1_std"].apply(ddragon_spell_icon)
-        sp["spell2_icon"] = sp["s2_std"].apply(ddragon_spell_icon)
+boots_list = []
+for _, row in dsel.iterrows():
+    boots = [row[c] for c in item_cols if str(row[c]).strip() in boots_set]
+    if boots:
+        boots_list.append((boots[0], row["win_clean"]))
 
-        st.dataframe(
-            sp[["spell1_icon","spell2_icon","win_rate","games"]],
-            use_container_width=True,
-            column_config={
-                "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
-                "spell2_icon": st.column_config.ImageColumn("스펠2", width="small"),
-                "win_rate":"승률(%)",
-                "games":"게임수"
-            }
-        )
-    else:
-        st.info("스펠 컬럼을 찾지 못했습니다.")
-
-# ===================== 신발 통계 (추가) =====================
-with col2:
-    if games and "boots" in dsel.columns:
-        bt = (
-            dsel.groupby("boots", as_index=False)
+if boots_list:
+    boots_df = pd.DataFrame(boots_list, columns=["boots","win_clean"])
+    boots_stat = (
+        boots_df.groupby("boots", as_index=False)
                 .agg(games=("win_clean","count"), wins=("win_clean","sum"))
-        )
-        bt["win_rate"] = (bt["wins"]/bt["games"]*100).round(2)
-        bt["pick_rate"] = (bt["games"]/games*100).round(2)
-        bt = bt.sort_values(["pick_rate","win_rate","games"], ascending=[False,False,False]).head(10)
+    )
+    boots_stat["win_rate"] = (boots_stat["wins"]/boots_stat["games"]*100).round(2)
+    boots_stat["pick_rate"] = (boots_stat["games"]/games*100).round(2)
+    boots_stat = boots_stat.sort_values(["pick_rate","win_rate"], ascending=[False, False])
+    boots_stat["icon_url"] = boots_stat["boots"].map(dict(zip(df_items["item"], df_items["icon_url"])))
+else:
+    boots_stat = pd.DataFrame(columns=["boots","pick_rate","win_rate","games","icon_url"])
 
-        # 아이콘 URL 생성 (아이템은 아이콘 경로가 다름)
-        bt["boots_icon"] = bt["boots"].apply(
-            lambda x: f"https://ddragon.leagueoflegends.com/cdn/{DD_VERSION}/img/item/{x}.png" if pd.notna(x) else ""
-        )
-
-        st.dataframe(
-            bt[["boots_icon","pick_rate","win_rate","games"]],
-            use_container_width=True,
-            column_config={
-                "boots_icon": st.column_config.ImageColumn("신발", width="small"),
-                "pick_rate":"픽률(%)",
-                "win_rate":"승률(%)",
-                "games":"게임수"
-            }
-        )
-    else:
-        st.info("신발 컬럼을 찾지 못했습니다.")
+# --- 두 표 나란히 출력 ---
+c1, c2 = st.columns(2)
+with c1:
+    st.subheader("스펠")
+    st.dataframe(
+        sp[["spell1_icon","spell2_icon","pick_rate","win_rate","games"]],
+        use_container_width=True,
+        column_config={
+            "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
+            "spell2_icon": st.column_config.ImageColumn("스펠2", width="small"),
+            "pick_rate":"픽률(%)",
+            "win_rate":"승률(%)",
+            "games":"게임수"
+        }
+    )
+with c2:
+    st.subheader("신발")
+    st.dataframe(
+        boots_stat[["icon_url","boots","pick_rate","win_rate","games"]],
+        use_container_width=True,
+        column_config={
+            "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
+            "boots":"아이템",
+            "pick_rate":"픽률(%)",
+            "win_rate":"승률(%)",
+            "games":"게임수"
+        }
+    )
 
 
 
