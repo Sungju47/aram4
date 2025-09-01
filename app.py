@@ -380,7 +380,7 @@ c1, c2 = st.columns(2)
 with c1:
     st.subheader("스펠")
     st.dataframe(
-        sp[["spell1_icon","spell2_icon","pick_rate","win_rate","games"]],
+        sp[["spell1_icon","spell2_icon","pick_rate","win_rate","games"]].to_dict("records"),
         use_container_width=True,
         column_config={
             "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
@@ -393,7 +393,7 @@ with c1:
 with c2:
     st.subheader("신발")
     st.dataframe(
-        boots_stat[["icon_url","boots","pick_rate","win_rate","games"]],
+        boots_stat[["icon_url","boots","pick_rate","win_rate","games"]].to_dict("records"),
         use_container_width=True,
         column_config={
             "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
