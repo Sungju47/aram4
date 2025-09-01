@@ -160,8 +160,9 @@ def is_core_item(item_name: str) -> bool:
     sub = df_items[df_items["item"] == item_name]
     if sub.empty:
         return False
-    return bool(sub["is_core"].any()) and not bool(sub["is_boots"].any())
-
+    is_core = str(sub["is_core"].iloc[0]).strip().lower() in ["true","1","yes"]
+    is_boots = str(sub["is_boots"].iloc[0]).strip().lower() in ["true","1","yes"]
+    return is_core and not is_boots
 if games and item_cols:
     core_builds = []
 
