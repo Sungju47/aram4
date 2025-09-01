@@ -147,7 +147,7 @@ c2.metric("Win Rate", f"{winrate}%")
 c3.metric("Pick Rate", f"{pickrate}%")
 
 # ===== 코어템 3개 조합 추천 =====
-st.subheader("3코어 조합합 통계")
+st.subheader("3코어 조합 통계")
 
 BOOT_KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화"]
 
