@@ -288,9 +288,39 @@ if not dsel_core.empty:
 else:
     st.info("선택 챔피언의 코어템 데이터가 없습니다.")
 
-# ===== 스펠 추천 (아이콘만) =====
-st.subheader("스펠 통계 (아이콘)")
+# ===== 스펠 통계 (아이콘만 표시) =====
+st.subheader("스펠 통계")
 
+SPELL_ALIASES = {
+    "점멸":"점멸","표식":"표식","눈덩이":"표식","유체화":"유체화","회복":"회복","점화":"점화",
+    "정화":"정화","탈진":"탈진","방어막":"방어막","총명":"총명","순간이동":"순간이동",
+    "flash":"점멸","mark":"표식","snowball":"표식","ghost":"유체화","haste":"유체화",
+    "heal":"회복","ignite":"점화","cleanse":"정화","exhaust":"탈진","barrier":"방어막",
+    "clarity":"총명","teleport":"순간이동",
+}
+KOR_TO_DDRAGON = {
+    "점멸":"SummonerFlash","표식":"SummonerSnowball","유체화":"SummonerHaste","회복":"SummonerHeal",
+    "점화":"SummonerDot","정화":"SummonerBoost","탈진":"SummonerExhaust","방어막":"SummonerBarrier",
+    "총명":"SummonerMana","순간이동":"SummonerTeleport",
+}
+
+def standard_korean_spell(s: str) -> str:
+    return SPELL_ALIASES.get(str(s).strip(), str(s).strip())
+
+def ddragon_spell_icon(s: str) -> str:
+    kor = standard_korean_spell(s)
+    key = KOR_TO_DDRAGON.get(kor)
+    if not key: return ""
+    return f"https://ddragon.leagueoflegends.com/cdn/{DD_VERSION}/img/spell/{key}.png"
+
+def canonical_pair(a: str, b: str):
+    a_std = standard_korean_spell(a or "")
+    b_std = standard_korean_spell(b or "")
+    if a_std <= b_std:
+        return a_std, b_std
+    return b_std, a_std
+
+# 스펠 컬럼 선택
 def pick_spell_cols(df_):
     if {"spell1_name_fix","spell2_name_fix"}.issubset(df_.columns):
         return "spell1_name_fix", "spell2_name_fix"
@@ -300,8 +330,8 @@ def pick_spell_cols(df_):
     return (cands[0], cands[1]) if len(cands) >= 2 else (None, None)
 
 s1, s2 = pick_spell_cols(dsel)
+
 if games and s1 and s2:
-    # 정규화된 무순서 키로 집계
     tmp = dsel[[s1, s2, "win_clean"]].copy()
     tmp["s1_std"], tmp["s2_std"] = zip(*tmp.apply(lambda r: canonical_pair(r[s1], r[s2]), axis=1))
     
@@ -310,28 +340,23 @@ if games and s1 and s2:
            .agg(games=("win_clean","count"), wins=("win_clean","sum"))
     )
     sp["win_rate"] = (sp["wins"]/sp["games"]*100).round(2)
-    
-    # 상위 10개
     sp = sp.sort_values(["games","win_rate"], ascending=[False,False]).head(10)
     
-    # 아이콘 컬럼
-    sp["icon1"] = sp["s1_std"].apply(resolve_spell_icon)
-    sp["icon2"] = sp["s2_std"].apply(resolve_spell_icon)
+    sp["spell1_icon"] = sp["s1_std"].apply(ddragon_spell_icon)
+    sp["spell2_icon"] = sp["s2_std"].apply(ddragon_spell_icon)
 
-    # Streamlit 출력 (아이콘만)
     st.dataframe(
-        sp[["icon1","icon2","games","wins","win_rate"]],
+        sp[["spell1_icon","spell2_icon","games","wins","win_rate"]],
         use_container_width=True,
         column_config={
-            "icon1": st.column_config.ImageColumn("스펠1", width="small"),
-            "icon2": st.column_config.ImageColumn("스펠2", width="small"),
-            "games":"게임수",
-            "wins":"승수",
-            "win_rate":"승률(%)"
+            "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
+            "spell2_icon": st.column_config.ImageColumn("스펠2", width="small"),
+            "games":"게임수","wins":"승수","win_rate":"승률(%)"
         }
     )
 else:
-    st.info("스펠 컬럼을 찾지 못했습니다. (spell1_name_fix/spell2_name_fix 또는 spell1/spell2 필요)")
+    st.info("스펠 컬럼을 찾지 못했습니다.")
+
 # ===== 룬 추천 =====
 st.subheader("룬 통계")
 core_map = rune_maps.get("core", {})
