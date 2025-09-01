@@ -346,12 +346,13 @@ if games and s1 and s2:
     sp["spell2_icon"] = sp["s2_std"].apply(ddragon_spell_icon)
 
     st.dataframe(
-        sp[["spell1_icon","spell2_icon","games","wins","win_rate"]],
+        sp[["spell1_icon","spell2_icon","win_rate","games"]],
         use_container_width=True,
         column_config={
             "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
             "spell2_icon": st.column_config.ImageColumn("스펠2", width="small"),
-            "games":"게임수","wins":"승수","win_rate":"승률(%)"
+            "win_rate":"승률(%)",
+            "games":"게임수"
         }
     )
 else:
