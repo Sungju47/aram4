@@ -149,7 +149,7 @@ c3.metric("Pick Rate", f"{pickrate}%")
 # ===== 코어템 3개 조합 추천 =====
 st.subheader("Core Item Builds (First 3 non-boot items)")
 
-BOOT_KEYWORDS = ["boots","greaves","shoes","신발","발걸음"]
+BOOT_KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화"]
 
 def is_boot(item: str) -> bool:
     item_l = str(item).lower()
