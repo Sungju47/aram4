@@ -289,75 +289,106 @@ else:
     st.info("선택 챔피언의 코어템 데이터가 없습니다.")
 
 
-# ===== 스펠 통계 (아이콘만 표시) =====
-st.subheader("스펠 통계")
+# ===== 스펠 & 신발 통계 =====
+st.subheader("스펠 / 신발 통계")
+col1, col2 = st.columns(2)
 
-SPELL_ALIASES = {
-    "점멸":"점멸","표식":"표식","눈덩이":"표식","유체화":"유체화","회복":"회복","점화":"점화",
-    "정화":"정화","탈진":"탈진","방어막":"방어막","총명":"총명","순간이동":"순간이동",
-    "flash":"점멸","mark":"표식","snowball":"표식","ghost":"유체화","haste":"유체화",
-    "heal":"회복","ignite":"점화","cleanse":"정화","exhaust":"탈진","barrier":"방어막",
-    "clarity":"총명","teleport":"순간이동",
-}
-KOR_TO_DDRAGON = {
-    "점멸":"SummonerFlash","표식":"SummonerSnowball","유체화":"SummonerHaste","회복":"SummonerHeal",
-    "점화":"SummonerDot","정화":"SummonerBoost","탈진":"SummonerExhaust","방어막":"SummonerBarrier",
-    "총명":"SummonerMana","순간이동":"SummonerTeleport",
-}
+# ===================== 스펠 통계 (기존) =====================
+with col1:
+    SPELL_ALIASES = {
+        "점멸":"점멸","표식":"표식","눈덩이":"표식","유체화":"유체화","회복":"회복","점화":"점화",
+        "정화":"정화","탈진":"탈진","방어막":"방어막","총명":"총명","순간이동":"순간이동",
+        "flash":"점멸","mark":"표식","snowball":"표식","ghost":"유체화","haste":"유체화",
+        "heal":"회복","ignite":"점화","cleanse":"정화","exhaust":"탈진","barrier":"방어막",
+        "clarity":"총명","teleport":"순간이동",
+    }
+    KOR_TO_DDRAGON = {
+        "점멸":"SummonerFlash","표식":"SummonerSnowball","유체화":"SummonerHaste","회복":"SummonerHeal",
+        "점화":"SummonerDot","정화":"SummonerBoost","탈진":"SummonerExhaust","방어막":"SummonerBarrier",
+        "총명":"SummonerMana","순간이동":"SummonerTeleport",
+    }
 
-def standard_korean_spell(s: str) -> str:
-    return SPELL_ALIASES.get(str(s).strip(), str(s).strip())
+    def standard_korean_spell(s: str) -> str:
+        return SPELL_ALIASES.get(str(s).strip(), str(s).strip())
 
-def ddragon_spell_icon(s: str) -> str:
-    kor = standard_korean_spell(s)
-    key = KOR_TO_DDRAGON.get(kor)
-    if not key: return ""
-    return f"https://ddragon.leagueoflegends.com/cdn/{DD_VERSION}/img/spell/{key}.png"
+    def ddragon_spell_icon(s: str) -> str:
+        kor = standard_korean_spell(s)
+        key = KOR_TO_DDRAGON.get(kor)
+        if not key: return ""
+        return f"https://ddragon.leagueoflegends.com/cdn/{DD_VERSION}/img/spell/{key}.png"
 
-def canonical_pair(a: str, b: str):
-    a_std = standard_korean_spell(a or "")
-    b_std = standard_korean_spell(b or "")
-    if a_std <= b_std:
-        return a_std, b_std
-    return b_std, a_std
+    def canonical_pair(a: str, b: str):
+        a_std = standard_korean_spell(a or "")
+        b_std = standard_korean_spell(b or "")
+        if a_std <= b_std:
+            return a_std, b_std
+        return b_std, a_std
 
-# 스펠 컬럼 선택
-def pick_spell_cols(df_):
-    if {"spell1_name_fix","spell2_name_fix"}.issubset(df_.columns):
-        return "spell1_name_fix", "spell2_name_fix"
-    if {"spell1","spell2"}.issubset(df_.columns):
-        return "spell1", "spell2"
-    cands = [c for c in df_.columns if "spell" in c.lower()]
-    return (cands[0], cands[1]) if len(cands) >= 2 else (None, None)
+    def pick_spell_cols(df_):
+        if {"spell1_name_fix","spell2_name_fix"}.issubset(df_.columns):
+            return "spell1_name_fix", "spell2_name_fix"
+        if {"spell1","spell2"}.issubset(df_.columns):
+            return "spell1", "spell2"
+        cands = [c for c in df_.columns if "spell" in c.lower()]
+        return (cands[0], cands[1]) if len(cands) >= 2 else (None, None)
 
-s1, s2 = pick_spell_cols(dsel)
+    s1, s2 = pick_spell_cols(dsel)
 
-if games and s1 and s2:
-    tmp = dsel[[s1, s2, "win_clean"]].copy()
-    tmp["s1_std"], tmp["s2_std"] = zip(*tmp.apply(lambda r: canonical_pair(r[s1], r[s2]), axis=1))
-    
-    sp = (
-        tmp.groupby(["s1_std","s2_std"], as_index=False)
-           .agg(games=("win_clean","count"), wins=("win_clean","sum"))
-    )
-    sp["win_rate"] = (sp["wins"]/sp["games"]*100).round(2)
-    sp = sp.sort_values(["games","win_rate"], ascending=[False,False]).head(10)
-    
-    sp["spell1_icon"] = sp["s1_std"].apply(ddragon_spell_icon)
-    sp["spell2_icon"] = sp["s2_std"].apply(ddragon_spell_icon)
+    if games and s1 and s2:
+        tmp = dsel[[s1, s2, "win_clean"]].copy()
+        tmp["s1_std"], tmp["s2_std"] = zip(*tmp.apply(lambda r: canonical_pair(r[s1], r[s2]), axis=1))
 
-    st.dataframe(
-        sp[["spell1_icon","spell2_icon","win_rate","games"]].to_dict("records"),
-        use_container_width=True,
-        column_config={
-            "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
-            "spell2_icon": st.column_config.ImageColumn("스펠2", width="small"),
-            "win_rate":"승률(%)",
-            "games":"게임수"
-        }
-    )
-else:
-    st.info("스펠 컬럼을 찾지 못했습니다.")
+        sp = (
+            tmp.groupby(["s1_std","s2_std"], as_index=False)
+               .agg(games=("win_clean","count"), wins=("win_clean","sum"))
+        )
+        sp["win_rate"] = (sp["wins"]/sp["games"]*100).round(2)
+        sp = sp.sort_values(["games","win_rate"], ascending=[False,False]).head(10)
+
+        sp["spell1_icon"] = sp["s1_std"].apply(ddragon_spell_icon)
+        sp["spell2_icon"] = sp["s2_std"].apply(ddragon_spell_icon)
+
+        st.dataframe(
+            sp[["spell1_icon","spell2_icon","win_rate","games"]],
+            use_container_width=True,
+            column_config={
+                "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
+                "spell2_icon": st.column_config.ImageColumn("스펠2", width="small"),
+                "win_rate":"승률(%)",
+                "games":"게임수"
+            }
+        )
+    else:
+        st.info("스펠 컬럼을 찾지 못했습니다.")
+
+# ===================== 신발 통계 (추가) =====================
+with col2:
+    if games and "boots" in dsel.columns:
+        bt = (
+            dsel.groupby("boots", as_index=False)
+                .agg(games=("win_clean","count"), wins=("win_clean","sum"))
+        )
+        bt["win_rate"] = (bt["wins"]/bt["games"]*100).round(2)
+        bt["pick_rate"] = (bt["games"]/games*100).round(2)
+        bt = bt.sort_values(["pick_rate","win_rate","games"], ascending=[False,False,False]).head(10)
+
+        # 아이콘 URL 생성 (아이템은 아이콘 경로가 다름)
+        bt["boots_icon"] = bt["boots"].apply(
+            lambda x: f"https://ddragon.leagueoflegends.com/cdn/{DD_VERSION}/img/item/{x}.png" if pd.notna(x) else ""
+        )
+
+        st.dataframe(
+            bt[["boots_icon","pick_rate","win_rate","games"]],
+            use_container_width=True,
+            column_config={
+                "boots_icon": st.column_config.ImageColumn("신발", width="small"),
+                "pick_rate":"픽률(%)",
+                "win_rate":"승률(%)",
+                "games":"게임수"
+            }
+        )
+    else:
+        st.info("신발 컬럼을 찾지 못했습니다.")
 
 
 
