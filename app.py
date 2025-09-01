@@ -147,7 +147,7 @@ c2.metric("Win Rate", f"{winrate}%")
 c3.metric("Pick Rate", f"{pickrate}%")
 
 # ===== 코어템 3개 조합 추천 =====
-st.subheader("Core Item Builds (First 3 non-boot items)")
+st.subheader("3코어 조합합 통계")
 
 BOOT_KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화"]
 
@@ -206,7 +206,7 @@ if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
         st.info("3개 코어템을 완성한 게임이 없습니다.")
         
 # ===== 아이템 추천 =====
-st.subheader("Recommended Items")
+st.subheader("아이템 통계계")
 if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
     stacks = []
     for c in [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]:
@@ -237,7 +237,7 @@ else:
     st.info("아이템 이름 컬럼(item0_name~item6_name)이 없어 챔피언별 아이템 집계를 만들 수 없습니다.")
 
 # ===== 스펠 추천 (무순서 집계) =====
-st.subheader("Recommended Spell Combos (순서 무시)")
+st.subheader("스펠 통계")
 
 SPELL_ALIASES = {
     "점멸":"점멸","표식":"표식","눈덩이":"표식","유체화":"유체화","회복":"회복","점화":"점화",
@@ -313,7 +313,7 @@ else:
     st.info("스펠 컬럼을 찾지 못했습니다. (spell1_name_fix/spell2_name_fix 또는 spell1/spell2 필요)")
 
 # ===== 룬 추천 =====
-st.subheader("Recommended Rune Combos")
+st.subheader("룬 통계")
 core_map = rune_maps.get("core", {})
 sub_map  = rune_maps.get("sub", {})
 
