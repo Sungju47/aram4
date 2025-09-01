@@ -206,7 +206,7 @@ if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
         st.info("3개 코어템을 완성한 게임이 없습니다.")
         
 # ===== 아이템 추천 =====
-st.subheader("아이템 통계계")
+st.subheader("아이템 통계")
 if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
     stacks = []
     for c in [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]:
