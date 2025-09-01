@@ -1,0 +1,334 @@
+﻿item,icon_url,total_picks,wins,win_rate,item_id,tags,is_boots,is_core,gold
+포로 간식,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2052.png,17691,9279,52.45,2052.0,[],False,True,0.0
+0,,12794,5754,44.97,,,,,
+마법사의 신발,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3020.png,5178,2549,49.23,223020.0,"['Boots', 'MagicPenetration']",True,True,500.0
+마법사의 신발,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3020.png,5178,2549,49.23,3020.0,"['Boots', 'MagicPenetration']",True,False,1100.0
+헤르메스의 발걸음,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3111.png,4521,2238,49.5,223111.0,"['Boots', 'SpellBlock', 'Tenacity']",True,True,500.0
+헤르메스의 발걸음,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3111.png,4521,2238,49.5,3111.0,"['Boots', 'SpellBlock', 'Tenacity']",True,False,1250.0
+그림자불꽃,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4645.png,3145,1532,48.71,224645.0,"['SpellDamage', 'MagicPenetration']",False,True,2500.0
+그림자불꽃,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4645.png,3145,1532,48.71,4645.0,"['SpellDamage', 'MagicPenetration']",False,True,3200.0
+리안드리의 고통,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6653.png,3117,1607,51.56,6653.0,"['Health', 'SpellDamage']",False,True,3000.0
+명석함의 아이오니아 장화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3158.png,2893,1452,50.19,223158.0,"['Boots', 'CooldownReduction']",True,True,500.0
+명석함의 아이오니아 장화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3158.png,2893,1452,50.19,3158.0,"['Boots', 'CooldownReduction']",True,False,900.0
+광전사의 군화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3006.png,2808,1354,48.22,223006.0,"['AttackSpeed', 'Boots']",True,True,500.0
+광전사의 군화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3006.png,2808,1354,48.22,3006.0,"['AttackSpeed', 'Boots']",True,False,1100.0
+무한의 대검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3031.png,2700,1371,50.78,223031.0,"['CriticalStrike', 'Damage']",False,True,2500.0
+무한의 대검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3031.png,2700,1371,50.78,3031.0,"['CriticalStrike', 'Damage']",False,True,3450.0
+루덴의 동반자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6655.png,2546,1237,48.59,226655.0,"['SpellDamage', 'Mana', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+루덴의 동반자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6655.png,2546,1237,48.59,6655.0,"['SpellDamage', 'Mana', 'CooldownReduction', 'AbilityHaste']",False,True,2750.0
+징수의 총,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6676.png,1998,936,46.85,226676.0,"['Damage', 'CriticalStrike', 'ArmorPenetration']",False,True,2500.0
+징수의 총,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6676.png,1998,936,46.85,6676.0,"['Damage', 'CriticalStrike', 'ArmorPenetration']",False,True,3000.0
+악의,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3118.png,1975,971,49.16,223118.0,"['SpellDamage', 'Mana', 'AbilityHaste']",False,True,2500.0
+악의,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3118.png,1975,971,49.16,3118.0,"['SpellDamage', 'Mana', 'AbilityHaste']",False,True,2700.0
+라바돈의 죽음모자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3089.png,1945,990,50.9,223089.0,['SpellDamage'],False,True,2500.0
+라바돈의 죽음모자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3089.png,1945,990,50.9,3089.0,['SpellDamage'],False,True,3500.0
+강철심장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3084.png,1923,1000,52.0,223084.0,['Health'],False,True,2500.0
+강철심장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3084.png,1923,1000,52.0,3084.0,"['Health', 'HealthRegen']",False,True,3000.0
+판금 장화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3047.png,1771,957,54.04,223047.0,"['Armor', 'Boots']",True,True,500.0
+판금 장화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3047.png,1771,957,54.04,3047.0,"['Armor', 'Boots']",True,False,1200.0
+쓸데없이 큰 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221058.png,1663,900,54.12,1058.0,['SpellDamage'],False,False,1200.0
+쓸데없이 큰 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221058.png,1663,900,54.12,221058.0,['SpellDamage'],False,True,500.0
+끝없는 절망,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2502.png,1644,855,52.01,222502.0,"['Health', 'Armor', 'CooldownReduction', 'MagicResist', 'AbilityHaste']",False,True,2500.0
+끝없는 절망,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2502.png,1644,855,52.01,2502.0,"['Health', 'SpellBlock', 'Armor', 'CooldownReduction', 'AbilityHaste']",False,True,2800.0
+몰락한 왕의 검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3153.png,1621,811,50.03,223153.0,"['Damage', 'AttackSpeed', 'LifeSteal', 'Slow', 'OnHit']",False,True,2500.0
+몰락한 왕의 검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3153.png,1621,811,50.03,3153.0,"['Damage', 'AttackSpeed', 'LifeSteal', 'Slow', 'OnHit']",False,True,3200.0
+폭풍 쇄도,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4646.png,1567,764,48.76,224646.0,"['SpellDamage', 'GoldPer', 'NonbootsMovement', 'MagicPenetration']",False,True,2500.0
+폭풍 쇄도,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4646.png,1567,764,48.76,4646.0,"['SpellDamage', 'GoldPer', 'NonbootsMovement', 'MagicPenetration']",False,True,2800.0
+갈라진 하늘,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6610.png,1540,758,49.22,226610.0,"['Health', 'Damage', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+갈라진 하늘,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6610.png,1540,758,49.22,6610.0,"['Health', 'Damage', 'CooldownReduction', 'AbilityHaste']",False,True,3100.0
+종말의 겨울,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323121.png,1519,800,52.67,223121.0,"['Health', 'Mana', 'AbilityHaste']",False,True,2500.0
+종말의 겨울,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323121.png,1519,800,52.67,3121.0,"['Health', 'Mana', 'AbilityHaste']",False,True,2400.0
+종말의 겨울,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323121.png,1519,800,52.67,323121.0,"['Health', 'Mana', 'AbilityHaste']",False,True,2400.0
+충전형 물약,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2031.png,1487,773,51.98,2031.0,"['HealthRegen', 'Consumable', 'Active', 'Lane', 'Jungle']",False,False,150.0
+어둠불꽃 횃불,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2503.png,1373,721,52.51,222503.0,"['SpellDamage', 'Mana', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+어둠불꽃 횃불,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2503.png,1373,721,52.51,2503.0,"['SpellDamage', 'Mana', 'CooldownReduction', 'AbilityHaste']",False,True,2800.0
+존야의 모래시계,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3157.png,1301,635,48.81,223157.0,"['Armor', 'SpellDamage', 'Active']",False,True,2500.0
+존야의 모래시계,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3157.png,1301,635,48.81,3157.0,"['Armor', 'SpellDamage', 'Active']",False,True,3250.0
+롱소드,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1036.png,1289,609,47.25,1036.0,"['Damage', 'Lane']",False,False,350.0
+윤 탈 야생화살,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3032.png,1263,633,50.12,223032.0,"['Damage', 'CriticalStrike']",False,True,2500.0
+윤 탈 야생화살,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3032.png,1263,633,50.12,3032.0,"['Damage', 'CriticalStrike', 'AttackSpeed']",False,True,3000.0
+무라마나,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323042.png,1246,579,46.47,223042.0,"['Damage', 'Mana', 'CooldownReduction', 'OnHit', 'ArmorPenetration']",False,True,2500.0
+무라마나,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323042.png,1246,579,46.47,3042.0,"['Damage', 'Mana', 'CooldownReduction', 'OnHit', 'ArmorPenetration']",False,True,2900.0
+무라마나,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323042.png,1246,579,46.47,323042.0,"['Damage', 'Mana', 'CooldownReduction', 'OnHit', 'ArmorPenetration']",False,True,2900.0
+증폭의 고서,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1052.png,1206,609,50.5,1052.0,['SpellDamage'],False,False,400.0
+오만,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6697.png,1199,600,50.04,126697.0,"['Damage', 'Active', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,2950.0
+오만,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6697.png,1199,600,50.04,226697.0,"['Damage', 'Active', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,2500.0
+오만,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6697.png,1199,600,50.04,6697.0,"['Damage', 'Active', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,3000.0
+월식,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6692.png,1171,555,47.4,226692.0,"['Damage', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+월식,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6692.png,1171,555,47.4,6692.0,"['Damage', 'CooldownReduction', 'AbilityHaste']",False,True,2900.0
+삼위일체,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3078.png,1157,578,49.96,223078.0,"['Health', 'Damage', 'AttackSpeed', 'CooldownReduction', 'OnHit', 'NonbootsMovement', 'AbilityHaste']",False,True,2500.0
+삼위일체,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3078.png,1157,578,49.96,3078.0,"['Health', 'Damage', 'AttackSpeed', 'CooldownReduction', 'OnHit', 'NonbootsMovement', 'AbilityHaste']",False,True,3333.0
+라일라이의 수정홀,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3116.png,1109,536,48.33,223116.0,"['Health', 'SpellDamage', 'Slow']",False,True,2500.0
+라일라이의 수정홀,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3116.png,1109,536,48.33,3116.0,"['Health', 'SpellDamage', 'Slow']",False,True,2600.0
+영겁의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6657.png,927,474,51.13,226657.0,"['Health', 'HealthRegen', 'SpellDamage', 'Mana', 'ManaRegen']",False,True,2500.0
+영겁의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6657.png,927,474,51.13,326657.0,"['Health', 'HealthRegen', 'SpellDamage', 'Mana', 'ManaRegen']",False,True,2600.0
+영겁의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6657.png,927,474,51.13,6657.0,"['Health', 'HealthRegen', 'SpellDamage', 'Mana', 'ManaRegen']",False,True,2600.0
+망각의 구,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3916.png,911,402,44.13,3916.0,['SpellDamage'],False,False,800.0
+워모그의 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/443083.png,906,511,56.4,3083.0,"['Health', 'HealthRegen']",False,True,3100.0
+워모그의 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/443083.png,906,511,56.4,443083.0,"['Health', 'HealthRegen', 'NonbootsMovement']",False,True,1000.0
+대천사의 포옹,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323040.png,905,467,51.6,223040.0,"['SpellDamage', 'Mana', 'AbilityHaste']",False,True,2500.0
+대천사의 포옹,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323040.png,905,467,51.6,3040.0,"['SpellDamage', 'Mana', 'AbilityHaste']",False,True,2900.0
+대천사의 포옹,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323040.png,905,467,51.6,323040.0,"['SpellDamage', 'Mana', 'AbilityHaste']",False,True,2900.0
+도미닉 경의 인사,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3036.png,900,456,50.67,223036.0,"['Damage', 'CriticalStrike', 'ArmorPenetration']",False,True,2500.0
+도미닉 경의 인사,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3036.png,900,456,50.67,3036.0,"['Damage', 'CriticalStrike', 'ArmorPenetration']",False,True,3100.0
+공허의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3135.png,897,425,47.38,223135.0,"['MagicPenetration', 'SpellDamage']",False,True,2500.0
+공허의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3135.png,897,425,47.38,3135.0,"['MagicPenetration', 'SpellDamage']",False,True,3000.0
+가시 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323075.png,896,440,49.11,223075.0,"['Health', 'Armor']",False,True,2500.0
+가시 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323075.png,896,440,49.11,3075.0,"['Health', 'Armor']",False,True,2450.0
+가시 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323075.png,896,440,49.11,323075.0,"['Health', 'Armor']",False,True,2650.0
+장화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1001.png,893,475,53.19,1001.0,['Boots'],True,False,300.0
+루비 수정,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1028.png,887,441,49.72,1028.0,['Health'],False,False,400.0
+고속 연사포,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3094.png,870,422,48.51,223094.0,"['CriticalStrike', 'AttackSpeed', 'NonbootsMovement']",False,True,2500.0
+고속 연사포,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3094.png,870,422,48.51,3094.0,"['CriticalStrike', 'AttackSpeed', 'NonbootsMovement']",False,True,2650.0
+거인의 허리띠,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221011.png,860,449,52.21,1011.0,['Health'],False,False,900.0
+거인의 허리띠,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221011.png,860,449,52.21,221011.0,['Health'],False,True,500.0
+죽음의 무도,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6333.png,853,448,52.52,226333.0,"['Armor', 'Damage', 'AbilityHaste']",False,True,2500.0
+죽음의 무도,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6333.png,853,448,52.52,6333.0,"['Armor', 'Damage', 'AbilityHaste']",False,True,3300.0
+여신의 눈물,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323070.png,842,447,53.09,3070.0,"['Mana', 'ManaRegen']",False,False,400.0
+여신의 눈물,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323070.png,842,447,53.09,323070.0,"['Mana', 'ManaRegen']",False,False,400.0
+정령의 형상,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3065.png,806,445,55.21,223065.0,"['Health', 'SpellBlock', 'HealthRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+정령의 형상,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3065.png,806,445,55.21,3065.0,"['Health', 'SpellBlock', 'HealthRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2700.0
+곡괭이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1037.png,803,359,44.71,1037.0,['Damage'],False,False,875.0
+피바라기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3072.png,781,426,54.55,223072.0,"['Damage', 'LifeSteal']",False,True,2500.0
+피바라기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3072.png,781,426,54.55,3072.0,"['Damage', 'LifeSteal']",False,True,3400.0
+쇼진의 창,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3161.png,769,359,46.68,223161.0,"['Health', 'Damage', 'AbilityHaste']",False,True,2500.0
+쇼진의 창,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3161.png,769,359,46.68,3161.0,"['Health', 'Damage', 'AbilityHaste']",False,True,3100.0
+신속의 장화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3009.png,753,377,50.07,223009.0,['Boots'],True,True,500.0
+신속의 장화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3009.png,753,377,50.07,3009.0,['Boots'],True,False,1000.0
+루난의 허리케인,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3085.png,751,387,51.53,223085.0,"['CriticalStrike', 'AttackSpeed', 'OnHit', 'NonbootsMovement']",False,True,2500.0
+루난의 허리케인,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3085.png,751,387,51.53,3085.0,"['CriticalStrike', 'AttackSpeed', 'OnHit', 'NonbootsMovement']",False,True,2650.0
+세릴다의 원한,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6694.png,733,327,44.61,226694.0,"['Damage', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,2500.0
+세릴다의 원한,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6694.png,733,327,44.61,6694.0,"['Damage', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,3000.0
+월석 재생기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6617.png,732,409,55.87,226617.0,"['Health', 'SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+월석 재생기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6617.png,732,409,55.87,326617.0,"['Health', 'SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2900.0
+월석 재생기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6617.png,732,409,55.87,6617.0,"['Health', 'SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2200.0
+원칙의 원형낫,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6696.png,681,328,48.16,226696.0,"['Damage', 'ArmorPenetration', 'AbilityHaste']",False,True,2500.0
+원칙의 원형낫,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6696.png,681,328,48.16,6696.0,"['Damage', 'ArmorPenetration', 'AbilityHaste']",False,True,3000.0
+칠흑의 양날 도끼,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3071.png,656,334,50.91,223071.0,"['Health', 'Damage', 'CooldownReduction', 'OnHit', 'NonbootsMovement', 'ArmorPenetration', 'AbilityHaste']",False,True,2500.0
+칠흑의 양날 도끼,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3071.png,656,334,50.91,3071.0,"['Health', 'Damage', 'CooldownReduction', 'OnHit', 'NonbootsMovement', 'ArmorPenetration', 'AbilityHaste']",False,True,3000.0
+균열 생성기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4633.png,656,313,47.71,224633.0,"['Health', 'SpellDamage', 'CooldownReduction', 'SpellVamp']",False,True,2500.0
+균열 생성기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4633.png,656,313,47.71,4633.0,"['Health', 'SpellDamage', 'CooldownReduction', 'SpellVamp']",False,True,3100.0
+나보리 명멸검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6675.png,634,306,48.26,226675.0,"['CriticalStrike', 'AttackSpeed', 'NonbootsMovement']",False,True,2500.0
+나보리 명멸검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6675.png,634,306,48.26,6675.0,"['CriticalStrike', 'AttackSpeed', 'NonbootsMovement']",False,True,2650.0
+해신 작쇼,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6665.png,626,319,50.96,226665.0,"['Health', 'SpellBlock', 'Armor', 'MagicResist']",False,True,2500.0
+해신 작쇼,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6665.png,626,319,50.96,6665.0,"['Health', 'SpellBlock', 'Armor', 'MagicResist']",False,True,3200.0
+크라켄 학살자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6672.png,605,280,46.28,226672.0,"['Damage', 'AttackSpeed', 'OnHit', 'NonbootsMovement']",False,True,2500.0
+크라켄 학살자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6672.png,605,280,46.28,6672.0,"['Damage', 'AttackSpeed', 'OnHit', 'NonbootsMovement']",False,True,3000.0
+모렐로노미콘,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3165.png,588,268,45.58,223165.0,"['Health', 'SpellDamage', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+모렐로노미콘,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3165.png,588,268,45.58,3165.0,"['Health', 'SpellDamage', 'CooldownReduction', 'AbilityHaste']",False,True,2850.0
+필멸자의 운명,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3033.png,561,289,51.52,223033.0,"['Damage', 'CriticalStrike', 'ArmorPenetration']",False,True,2500.0
+필멸자의 운명,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3033.png,561,289,51.52,3033.0,"['Damage', 'CriticalStrike', 'ArmorPenetration']",False,True,3300.0
+구인수의 격노검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3124.png,551,278,50.45,223124.0,"['Damage', 'AttackSpeed', 'SpellDamage', 'OnHit']",False,True,2500.0
+구인수의 격노검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3124.png,551,278,50.45,3124.0,"['Damage', 'AttackSpeed', 'SpellDamage', 'OnHit']",False,True,3000.0
+불멸의 철갑궁,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6673.png,548,278,50.73,226673.0,"['Damage', 'CriticalStrike']",False,True,2500.0
+불멸의 철갑궁,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6673.png,548,278,50.73,6673.0,"['Damage', 'CriticalStrike']",False,True,3000.0
+마법사의 최후,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3091.png,546,286,52.38,223091.0,"['SpellBlock', 'AttackSpeed', 'OnHit', 'Tenacity']",False,True,2500.0
+마법사의 최후,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3091.png,546,286,52.38,3091.0,"['SpellBlock', 'AttackSpeed', 'OnHit', 'Tenacity']",False,True,2800.0
+역병의 보석,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4630.png,536,239,44.59,4630.0,"['MagicPenetration', 'SpellDamage']",False,False,1100.0
+구원,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323107.png,521,268,51.44,223107.0,"['Health', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+구원,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323107.png,521,268,51.44,3107.0,"['Health', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2300.0
+구원,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323107.png,521,268,51.44,323107.0,"['Health', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2800.0
+마법공학 교류 발전기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3145.png,508,246,48.43,3145.0,['SpellDamage'],False,False,1100.0
+지평선의 초점,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4628.png,503,245,48.71,224628.0,"['SpellDamage', 'AbilityHaste']",False,True,2500.0
+지평선의 초점,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4628.png,503,245,48.71,4628.0,"['SpellDamage', 'AbilityHaste']",False,True,2800.0
+흡혈의 낫,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221053.png,485,217,44.74,1053.0,"['Damage', 'LifeSteal']",False,False,900.0
+흡혈의 낫,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221053.png,485,217,44.74,221053.0,"['Damage', 'LifeSteal']",False,True,500.0
+땅굴 채굴기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2021.png,479,236,49.27,2021.0,"['Health', 'Damage']",False,False,1150.0
+마법공학 로켓 벨트,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3152.png,469,245,52.24,223152.0,"['Health', 'SpellDamage', 'Active', 'CooldownReduction', 'NonbootsMovement', 'AbilityHaste']",False,True,2500.0
+마법공학 로켓 벨트,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3152.png,469,245,52.24,3152.0,"['Health', 'SpellDamage', 'Active', 'CooldownReduction', 'NonbootsMovement', 'AbilityHaste']",False,True,2650.0
+민첩성의 망토,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1018.png,466,204,43.78,1018.0,['CriticalStrike'],False,False,600.0
+수호자의 뿔피리,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/222051.png,462,247,53.46,2051.0,"['Health', 'HealthRegen', 'Lane']",False,True,950.0
+수호자의 뿔피리,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/222051.png,462,247,53.46,222051.0,"['Health', 'HealthRegen', 'Lane']",False,True,500.0
+B.F. 대검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221038.png,461,235,50.98,1038.0,['Damage'],False,False,1300.0
+B.F. 대검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221038.png,461,235,50.98,221038.0,['Damage'],False,True,1300.0
+리치베인,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3100.png,460,215,46.74,223100.0,"['SpellDamage', 'OnHit', 'NonbootsMovement', 'AbilityHaste']",False,True,2500.0
+리치베인,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3100.png,460,215,46.74,3100.0,"['SpellDamage', 'OnHit', 'NonbootsMovement', 'AbilityHaste']",False,True,2900.0
+내셔의 이빨,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3115.png,459,232,50.54,223115.0,"['AttackSpeed', 'SpellDamage', 'OnHit', 'AbilityHaste']",False,True,2500.0
+내셔의 이빨,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3115.png,459,232,50.54,3115.0,"['AttackSpeed', 'SpellDamage', 'OnHit', 'AbilityHaste']",False,True,2900.0
+핏빛 저주,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/8010.png,458,238,51.97,4010.0,"['SpellBlock', 'SpellDamage', 'CooldownReduction', 'MagicPenetration']",False,True,2500.0
+핏빛 저주,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/8010.png,458,238,51.97,8010.0,"['Health', 'SpellDamage', 'CooldownReduction', 'MagicPenetration']",False,True,2900.0
+천 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1029.png,440,242,55.0,1029.0,['Armor'],False,False,300.0
+란두인의 예언,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3143.png,437,237,54.23,223143.0,"['Health', 'Armor', 'Active', 'Slow']",False,True,2500.0
+란두인의 예언,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3143.png,437,237,54.23,3143.0,"['Health', 'Armor', 'Active', 'Slow']",False,True,2700.0
+최후의 속삭임,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3035.png,430,191,44.42,3035.0,"['ArmorPenetration', 'Damage']",False,False,1450.0
+스테락의 도전,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3053.png,427,209,48.95,223053.0,"['Health', 'Damage', 'Tenacity']",False,True,2500.0
+스테락의 도전,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3053.png,427,209,48.95,3053.0,"['Health', 'Damage', 'Tenacity']",False,True,3200.0
+점화석,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3067.png,427,199,46.6,223067.0,"['Health', 'CooldownReduction', 'AbilityHaste']",False,True,500.0
+점화석,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3067.png,427,199,46.6,3067.0,"['Health', 'CooldownReduction', 'AbilityHaste']",False,False,800.0
+우주의 추진력,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4629.png,420,222,52.86,224629.0,"['Health', 'SpellDamage', 'NonbootsMovement', 'AbilityHaste']",False,True,2500.0
+우주의 추진력,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4629.png,420,222,52.86,4629.0,"['Health', 'SpellDamage', 'NonbootsMovement', 'AbilityHaste']",False,True,3000.0
+덤불 조끼,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3076.png,411,208,50.61,3076.0,['Armor'],False,False,800.0
+콜필드의 전투 망치,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3133.png,410,195,47.56,3133.0,"['Damage', 'CooldownReduction', 'AbilityHaste']",False,False,1050.0
+불타는 향로,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3504.png,404,221,54.7,223504.0,"['AttackSpeed', 'SpellDamage', 'ManaRegen', 'NonbootsMovement']",False,True,2500.0
+불타는 향로,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3504.png,404,221,54.7,323504.0,"['AttackSpeed', 'SpellDamage', 'ManaRegen', 'NonbootsMovement']",False,True,2600.0
+불타는 향로,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3504.png,404,221,54.7,3504.0,"['AttackSpeed', 'SpellDamage', 'ManaRegen', 'NonbootsMovement']",False,True,2200.0
+음전자 망토,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221057.png,400,197,49.25,1057.0,['SpellBlock'],False,False,850.0
+음전자 망토,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221057.png,400,197,49.25,221057.0,['SpellBlock'],False,True,450.0
+방출의 마법봉,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221026.png,379,189,49.87,1026.0,['SpellDamage'],False,False,850.0
+방출의 마법봉,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221026.png,379,189,49.87,221026.0,['SpellDamage'],False,True,500.0
+밤의 끝자락,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3814.png,370,183,49.46,223814.0,"['Health', 'Damage', 'ArmorPenetration']",False,True,2500.0
+밤의 끝자락,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3814.png,370,183,49.46,3814.0,"['Health', 'Damage', 'ArmorPenetration']",False,True,3000.0
+악마의 마법서,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3108.png,369,186,50.41,3108.0,"['SpellDamage', 'CooldownReduction', 'AbilityHaste']",False,False,850.0
+케이닉 루컨,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2504.png,368,207,56.25,222504.0,"['Health', 'SpellBlock', 'HealthRegen']",False,True,2500.0
+케이닉 루컨,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2504.png,368,207,56.25,2504.0,"['Health', 'SpellBlock', 'HealthRegen']",False,True,2900.0
+톱날 단검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3134.png,347,160,46.11,3134.0,"['Damage', 'ArmorPenetration']",False,False,1000.0
+독사의 송곳니,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6695.png,345,167,48.41,226695.0,"['Damage', 'ArmorPenetration']",False,True,2500.0
+독사의 송곳니,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6695.png,345,167,48.41,6695.0,"['Damage', 'ArmorPenetration']",False,True,2500.0
+스태틱의 단검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3087.png,336,178,52.98,223087.0,"['Damage', 'AttackSpeed', 'OnHit', 'NonbootsMovement']",False,True,2500.0
+스태틱의 단검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3087.png,336,178,52.98,3087.0,"['Damage', 'AttackSpeed', 'OnHit', 'NonbootsMovement']",False,True,2700.0
+기괴한 가면,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3147.png,335,172,51.34,3147.0,"['Health', 'SpellDamage']",False,False,1300.0
+경계,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3302.png,329,168,51.06,223302.0,"['Damage', 'AttackSpeed', 'OnHit', 'MagicPenetration', 'ArmorPenetration']",False,True,2500.0
+경계,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3302.png,329,168,51.06,3302.0,"['Damage', 'AttackSpeed', 'OnHit', 'MagicPenetration', 'ArmorPenetration']",False,True,3000.0
+정수 약탈자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3508.png,326,149,45.71,223508.0,"['Damage', 'CriticalStrike', 'ManaRegen', 'CooldownReduction', 'OnHit', 'AbilityHaste']",False,True,2500.0
+정수 약탈자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3508.png,326,149,45.71,3508.0,"['Damage', 'CriticalStrike', 'ManaRegen', 'CooldownReduction', 'OnHit', 'AbilityHaste']",False,True,2900.0
+마법무효화의 망토,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1033.png,324,170,52.47,1033.0,['SpellBlock'],False,False,400.0
+맬모셔스의 아귀,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3156.png,310,161,51.94,223156.0,"['SpellBlock', 'Damage', 'LifeSteal', 'SpellVamp', 'AbilityHaste']",False,True,2500.0
+맬모셔스의 아귀,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3156.png,310,161,51.94,3156.0,"['SpellBlock', 'Damage', 'LifeSteal', 'SpellVamp', 'AbilityHaste']",False,True,3100.0
+단검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1042.png,301,149,49.5,1042.0,['AttackSpeed'],False,False,250.0
+얼어붙은 심장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323110.png,300,156,52.0,223110.0,"['Armor', 'Mana', 'Aura', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+얼어붙은 심장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323110.png,300,156,52.0,3110.0,"['Armor', 'Mana', 'Aura', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+얼어붙은 심장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323110.png,300,156,52.0,323110.0,"['Armor', 'Mana', 'Aura', 'CooldownReduction', 'AbilityHaste']",False,True,2700.0
+제국의 명령,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4005.png,296,153,51.69,224005.0,"['SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+제국의 명령,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4005.png,296,153,51.69,324005.0,"['SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2750.0
+제국의 명령,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4005.png,296,153,51.69,4005.0,"['SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2250.0
+쇠사슬 조끼,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221031.png,292,143,48.97,1031.0,['Armor'],False,False,800.0
+쇠사슬 조끼,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221031.png,292,143,48.97,221031.0,['Armor'],False,True,500.0
+곡궁,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221043.png,291,122,41.92,1043.0,"['AttackSpeed', 'OnHit']",False,False,700.0
+곡궁,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/221043.png,291,122,41.92,221043.0,"['AttackSpeed', 'OnHit']",False,True,500.0
+처형인의 대검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3123.png,262,113,43.13,3123.0,['Damage'],False,False,800.0
+무덤꽃,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3137.png,258,134,51.94,223137.0,"['SpellDamage', 'MagicPenetration', 'AbilityHaste']",False,True,2500.0
+무덤꽃,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3137.png,258,134,51.94,3137.0,"['SpellDamage', 'MagicPenetration', 'AbilityHaste']",False,True,3000.0
+망령의 두건,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3211.png,258,130,50.39,3211.0,"['Health', 'HealthRegen', 'SpellBlock']",False,False,1250.0
+강철 인장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2019.png,251,134,53.39,2019.0,"['Armor', 'Damage']",False,False,1100.0
+미카엘의 축복,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323222.png,247,138,55.87,223222.0,"['Health', 'ManaRegen', 'Active', 'CooldownReduction', 'Tenacity', 'AbilityHaste']",False,True,2500.0
+미카엘의 축복,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323222.png,247,138,55.87,3222.0,"['Health', 'ManaRegen', 'Active', 'CooldownReduction', 'Tenacity', 'AbilityHaste']",False,True,2300.0
+미카엘의 축복,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323222.png,247,138,55.87,323222.0,"['Health', 'ManaRegen', 'Active', 'CooldownReduction', 'Tenacity', 'AbilityHaste']",False,True,2800.0
+발걸음 분쇄기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6631.png,231,108,46.75,226631.0,"['Health', 'Damage', 'AttackSpeed', 'Slow', 'NonbootsMovement']",False,True,2500.0
+발걸음 분쇄기,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6631.png,231,108,46.75,6631.0,"['Health', 'Damage', 'AttackSpeed', 'Slow']",False,True,3300.0
+강철의 솔라리 펜던트,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323190.png,230,116,50.43,223190.0,"['Health', 'SpellBlock', 'Armor', 'Aura', 'Active', 'MagicResist', 'AbilityHaste']",False,True,2500.0
+강철의 솔라리 펜던트,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323190.png,230,116,50.43,3190.0,"['Health', 'SpellBlock', 'Armor', 'Aura', 'Active', 'MagicResist', 'AbilityHaste']",False,True,2200.0
+강철의 솔라리 펜던트,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323190.png,230,116,50.43,323190.0,"['Health', 'SpellBlock', 'Armor', 'Aura', 'Active', 'MagicResist', 'AbilityHaste']",False,True,2600.0
+파수꾼의 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3082.png,226,114,50.44,3082.0,['Armor'],False,False,1000.0
+군단의 방패,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3105.png,226,108,47.79,223105.0,"['SpellBlock', 'Armor', 'CooldownReduction', 'AbilityHaste']",False,True,500.0
+군단의 방패,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3105.png,226,108,47.79,3105.0,"['SpellBlock', 'Armor', 'CooldownReduction', 'AbilityHaste']",False,False,1100.0
+새벽심장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6621.png,224,126,56.25,226621.0,"['SpellDamage', 'ManaRegen']",False,True,2500.0
+새벽심장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6621.png,224,126,56.25,326621.0,"['SpellDamage', 'ManaRegen']",False,True,2900.0
+새벽심장,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6621.png,224,126,56.25,6621.0,"['SpellDamage', 'ManaRegen']",False,True,2500.0
+요우무의 유령검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3142.png,219,120,54.79,223142.0,"['Damage', 'Active', 'NonbootsMovement', 'ArmorPenetration']",False,True,2500.0
+요우무의 유령검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3142.png,219,120,54.79,3142.0,"['Damage', 'Active', 'NonbootsMovement', 'ArmorPenetration']",False,True,2800.0
+빛나는 티끌,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/222022.png,212,127,59.91,2022.0,['CooldownReduction'],False,False,250.0
+빛나는 티끌,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/222022.png,212,127,59.91,222022.0,['CooldownReduction'],False,True,250.0
+추적자의 팔목 보호대,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2420.png,210,98,46.67,2420.0,"['Armor', 'SpellDamage', 'Active']",False,False,1600.0
+금지된 우상,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3114.png,205,115,56.1,3114.0,['ManaRegen'],False,False,600.0
+얼어붙은 건틀릿,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6662.png,203,100,49.26,226662.0,"['Health', 'Armor', 'CooldownReduction', 'Slow', 'OnHit', 'AbilityHaste']",False,True,2500.0
+얼어붙은 건틀릿,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6662.png,203,100,49.26,6662.0,"['Health', 'Armor', 'CooldownReduction', 'Slow', 'OnHit', 'AbilityHaste']",False,True,2900.0
+부서진 팔목 보호대,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2421.png,201,120,59.7,2421.0,[],False,False,1600.0
+슈렐리아의 군가,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/322065.png,197,112,56.85,2065.0,"['SpellDamage', 'ManaRegen', 'Active', 'CooldownReduction', 'NonbootsMovement', 'AbilityHaste']",False,True,2200.0
+슈렐리아의 군가,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/322065.png,197,112,56.85,222065.0,"['SpellDamage', 'ManaRegen', 'Active', 'CooldownReduction', 'NonbootsMovement', 'AbilityHaste']",False,True,2500.0
+슈렐리아의 군가,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/322065.png,197,112,56.85,322065.0,"['SpellDamage', 'ManaRegen', 'Active', 'CooldownReduction', 'NonbootsMovement', 'AbilityHaste']",False,True,2600.0
+거대한 히드라,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3748.png,197,104,52.79,223748.0,"['Health', 'HealthRegen', 'Damage', 'OnHit']",False,True,2500.0
+거대한 히드라,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3748.png,197,104,52.79,3748.0,"['Health', 'HealthRegen', 'Damage', 'OnHit']",False,True,3300.0
+절정의 화살,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6670.png,195,93,47.69,6670.0,"['Damage', 'CriticalStrike']",False,False,1300.0
+유령 무희,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3046.png,193,104,53.89,223046.0,"['CriticalStrike', 'AttackSpeed', 'NonbootsMovement']",False,True,2500.0
+유령 무희,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3046.png,193,104,53.89,3046.0,"['CriticalStrike', 'AttackSpeed', 'NonbootsMovement']",False,True,2650.0
+대자연의 힘,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4401.png,193,100,51.81,224401.0,"['Health', 'SpellBlock', 'NonbootsMovement']",False,True,2500.0
+대자연의 힘,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4401.png,193,100,51.81,4401.0,"['Health', 'SpellBlock', 'NonbootsMovement']",False,True,2800.0
+공허한 광휘,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6664.png,193,97,50.26,226664.0,"['Health', 'SpellBlock', 'Aura', 'MagicResist', 'AbilityHaste']",False,True,2500.0
+공허한 광휘,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6664.png,193,97,50.26,6664.0,"['Health', 'SpellBlock', 'HealthRegen', 'Aura', 'MagicResist', 'AbilityHaste']",False,True,2800.0
+밴시의 장막,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3102.png,176,97,55.11,223102.0,"['SpellBlock', 'SpellDamage']",False,True,2500.0
+밴시의 장막,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3102.png,176,97,55.11,3102.0,"['SpellBlock', 'SpellDamage']",False,True,3000.0
+열정의 검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3086.png,170,83,48.82,3086.0,"['CriticalStrike', 'AttackSpeed', 'NonbootsMovement']",False,False,1200.0
+지배자의 피갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/447111.png,164,94,57.32,2501.0,"['Health', 'Damage']",False,True,3300.0
+지배자의 피갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/447111.png,164,94,57.32,447111.0,"['Health', 'Damage']",False,True,2500.0
+탐식의 망치,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3044.png,164,80,48.78,3044.0,"['Health', 'Damage', 'NonbootsMovement']",False,False,1100.0
+에테르 환영,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3113.png,162,84,51.85,3113.0,"['NonbootsMovement', 'SpellDamage']",False,False,900.0
+운명의 재,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2508.png,149,77,51.68,2508.0,['SpellDamage'],False,False,900.0
+수호자의 검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3177.png,140,96,68.57,223177.0,"['Health', 'Damage', 'Lane', 'AbilityHaste']",False,True,500.0
+수호자의 검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3177.png,140,96,68.57,3177.0,"['Health', 'Damage', 'Lane', 'AbilityHaste']",False,True,950.0
+헤르메스의 시미터,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3139.png,138,68,49.28,223139.0,"['SpellBlock', 'Damage', 'LifeSteal', 'Active', 'NonbootsMovement', 'Tenacity']",False,True,2500.0
+헤르메스의 시미터,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3139.png,138,68,49.28,3139.0,"['SpellBlock', 'Damage', 'LifeSteal', 'Active', 'NonbootsMovement', 'Tenacity']",False,True,3200.0
+사라진 양피지,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3802.png,134,69,51.49,3802.0,"['SpellDamage', 'Mana', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,False,1200.0
+태양불꽃 방패,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3068.png,125,65,52.0,223068.0,"['Health', 'Armor', 'Aura', 'AbilityHaste']",False,True,2500.0
+태양불꽃 방패,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3068.png,125,65,52.0,3068.0,"['Health', 'Armor', 'Aura', 'AbilityHaste']",False,True,2700.0
+주문포식자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3155.png,121,65,53.72,3155.0,"['Damage', 'SpellBlock']",False,False,1300.0
+정찰병의 새총,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3144.png,117,55,47.01,3144.0,['AttackSpeed'],False,False,600.0
+기회,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6701.png,113,59,52.21,226701.0,"['Damage', 'Active', 'NonbootsMovement', 'ArmorPenetration']",False,True,2500.0
+기회,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6701.png,113,59,52.21,6701.0,"['Damage', 'Active', 'NonbootsMovement', 'ArmorPenetration']",False,True,2700.0
+흐르는 물의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6616.png,110,71,64.55,226616.0,"['SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+흐르는 물의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6616.png,110,71,64.55,326616.0,"['SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2600.0
+흐르는 물의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6616.png,110,71,64.55,6616.0,"['SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2250.0
+벼락폭풍검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6699.png,110,53,48.18,226699.0,"['Damage', 'Active', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,2500.0
+벼락폭풍검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6699.png,110,53,48.18,6699.0,"['Damage', 'Active', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,3000.0
+실험적 마공학판,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3073.png,108,55,50.93,223073.0,"['Health', 'Damage', 'AttackSpeed', 'CooldownReduction', 'NonbootsMovement', 'AbilityHaste']",False,True,2500.0
+실험적 마공학판,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3073.png,108,55,50.93,3073.0,"['Health', 'Damage', 'AttackSpeed', 'CooldownReduction', 'NonbootsMovement', 'AbilityHaste']",False,True,3000.0
+심연의 가면,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/8020.png,106,61,57.55,228020.0,"['Health', 'SpellBlock', 'SpellDamage', 'CooldownReduction', 'MagicResist', 'AbilityHaste']",False,True,2500.0
+심연의 가면,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/8020.png,106,61,57.55,328020.0,"['Health', 'SpellBlock', 'CooldownReduction', 'MagicResist', 'AbilityHaste']",False,True,2850.0
+심연의 가면,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/8020.png,106,61,57.55,8020.0,"['Health', 'SpellBlock', 'CooldownReduction', 'MagicResist', 'AbilityHaste']",False,True,2650.0
+수호자의 망치,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3184.png,104,64,61.54,223184.0,"['Health', 'Damage', 'LifeSteal', 'Lane']",False,True,500.0
+수호자의 망치,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3184.png,104,64,61.54,3184.0,"['Health', 'Damage', 'LifeSteal', 'Lane']",False,True,950.0
+망자의 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3742.png,102,60,58.82,223742.0,"['Health', 'Armor', 'Slow', 'NonbootsMovement']",False,True,2500.0
+망자의 갑옷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3742.png,102,60,58.82,3742.0,"['Health', 'Armor', 'Slow', 'NonbootsMovement']",False,True,2900.0
+굶주린 히드라,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3074.png,101,47,46.53,223074.0,"['Damage', 'LifeSteal', 'CooldownReduction', 'OnHit', 'AbilityHaste']",False,True,2500.0
+굶주린 히드라,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3074.png,101,47,46.53,3074.0,"['Damage', 'LifeSteal', 'CooldownReduction', 'OnHit', 'AbilityHaste']",False,True,3300.0
+온기가 필요한 자의 도끼,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3051.png,100,46,46.0,3051.0,"['Damage', 'AttackSpeed']",False,False,1200.0
+불경한 히드라,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6698.png,98,48,48.98,226698.0,"['Damage', 'Active', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,2500.0
+불경한 히드라,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6698.png,98,48,48.98,6698.0,"['Damage', 'Active', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,3200.0
+허수아비,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3330.png,97,50,51.55,3330.0,"['Active', 'Jungle', 'Lane', 'Trinket', 'Vision']",False,True,0.0
+기사의 맹세,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323109.png,96,59,61.46,223109.0,"['Health', 'Armor', 'Aura', 'Active', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+기사의 맹세,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323109.png,96,59,61.46,3109.0,"['Health', 'HealthRegen', 'Armor', 'Aura', 'Active', 'CooldownReduction', 'AbilityHaste']",False,True,2300.0
+기사의 맹세,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323109.png,96,59,61.46,323109.0,"['Health', 'HealthRegen', 'Armor', 'Aura', 'Active', 'CooldownReduction', 'AbilityHaste']",False,True,2900.0
+수호자의 보주,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3112.png,91,45,49.45,223112.0,"['SpellDamage', 'ManaRegen', 'CooldownReduction', 'Lane']",False,True,500.0
+수호자의 보주,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3112.png,91,45,49.45,3112.0,"['Health', 'SpellDamage', 'ManaRegen', 'Lane']",False,True,950.0
+수은 장식띠,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3140.png,90,53,58.89,3140.0,"['Active', 'SpellBlock']",False,False,1300.0
+수정 팔 보호구,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3801.png,87,40,45.98,3801.0,"['Health', 'HealthRegen']",False,False,800.0
+광휘의 검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3057.png,86,41,47.67,223057.0,"['OnHit', 'AbilityHaste']",False,True,2500.0
+광휘의 검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3057.png,86,41,47.67,3057.0,"['OnHit', 'AbilityHaste']",False,False,900.0
+망령 해적검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4004.png,83,38,45.78,224004.0,"['Damage', 'ArmorPenetration']",False,True,2500.0
+망령 해적검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4004.png,83,38,45.78,4004.0,"['Damage', 'NonbootsMovement', 'ArmorPenetration']",False,True,2800.0
+생명선,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4003.png,71,34,47.89,4003.0,"['Damage', 'NonbootsMovement', 'ArmorPenetration']",False,False,1600.0
+티아맷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3077.png,70,36,51.43,3077.0,"['Damage', 'OnHit']",False,False,1200.0
+요정의 부적,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1004.png,69,41,59.42,1004.0,['ManaRegen'],False,False,200.0
+비상의 월갑,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3066.png,62,36,58.06,3066.0,"['Health', 'NonbootsMovement']",False,False,800.0
+밴들유리 거울,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4642.png,60,29,48.33,4642.0,"['SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,False,900.0
+야수화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2020.png,53,32,60.38,2020.0,"['Damage', 'CooldownReduction', 'ArmorPenetration']",False,False,1337.0
+바미의 불씨,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6660.png,52,31,59.62,6660.0,"['Health', 'AbilityHaste']",False,False,900.0
+화공 펑크 사슬검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6609.png,51,22,43.14,226609.0,"['Health', 'Damage', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+화공 펑크 사슬검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6609.png,51,22,43.14,6609.0,"['Health', 'Damage', 'CooldownReduction', 'AbilityHaste']",False,True,3100.0
+체력 물약,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2003.png,50,31,62.0,2003.0,"['HealthRegen', 'Consumable', 'Lane', 'Jungle']",False,True,50.0
+신록의 장벽,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/4632.png,50,26,52.0,4632.0,"['SpellBlock', 'SpellDamage']",False,False,1600.0
+꽁지깃,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6690.png,48,25,52.08,6690.0,"['Damage', 'NonbootsMovement']",False,False,775.0
+얼음 방패,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3024.png,47,23,48.94,3024.0,"['Armor', 'Mana', 'CooldownReduction', 'AbilityHaste']",False,False,900.0
+지크의 융합,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323050.png,44,22,50.0,223050.0,"['Health', 'SpellBlock', 'Armor', 'AbilityHaste']",False,True,2500.0
+지크의 융합,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323050.png,44,22,50.0,3050.0,"['Health', 'SpellBlock', 'Armor', 'AbilityHaste']",False,True,2200.0
+지크의 융합,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323050.png,44,22,50.0,323050.0,"['Health', 'SpellBlock', 'Armor', 'AbilityHaste']",False,True,2300.0
+약간 신비한 신발,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2422.png,34,16,47.06,2422.0,['Boots'],True,False,300.0
+헬리아의 메아리,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6620.png,33,20,60.61,226620.0,"['Health', 'SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2500.0
+헬리아의 메아리,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6620.png,33,20,60.61,326620.0,"['Health', 'SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2600.0
+헬리아의 메아리,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/6620.png,33,20,60.61,6620.0,"['Health', 'SpellDamage', 'ManaRegen', 'CooldownReduction', 'AbilityHaste']",False,True,2200.0
+원기 회복의 구슬,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1006.png,24,11,45.83,1006.0,['HealthRegen'],False,False,300.0
+개척자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323002.png,17,11,64.71,223002.0,"['Health', 'Armor', 'NonbootsMovement']",False,True,2500.0
+개척자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323002.png,17,11,64.71,3002.0,"['Health', 'Armor', 'NonbootsMovement']",False,True,2400.0
+개척자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323002.png,17,11,64.71,323002.0,"['Health', 'Armor', 'NonbootsMovement']",False,True,2600.0
+마나무네,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323004.png,17,6,35.29,223004.0,"['Damage', 'Mana', 'CooldownReduction', 'OnHit', 'AbilityHaste']",False,True,2500.0
+마나무네,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323004.png,17,6,35.29,3004.0,"['Damage', 'Mana', 'CooldownReduction', 'OnHit', 'AbilityHaste']",False,True,2900.0
+마나무네,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323004.png,17,6,35.29,323004.0,"['Damage', 'Mana', 'CooldownReduction', 'OnHit', 'AbilityHaste']",False,True,2900.0
+사파이어 수정,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/1027.png,16,9,56.25,1027.0,['Mana'],False,False,300.0
+선체파괴자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3181.png,15,10,66.67,223181.0,"['Health', 'Damage', 'NonbootsMovement']",False,True,2500.0
+선체파괴자,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3181.png,15,10,66.67,3181.0,"['Health', 'Damage', 'NonbootsMovement']",False,True,3000.0
+혹한의 손길,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323119.png,15,6,40.0,223119.0,"['Health', 'Mana', 'AbilityHaste']",False,True,2500.0
+혹한의 손길,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323119.png,15,6,40.0,3119.0,"['Health', 'Mana', 'AbilityHaste']",False,True,2400.0
+혹한의 손길,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323119.png,15,6,40.0,323119.0,"['Health', 'Mana', 'AbilityHaste']",False,True,2400.0
+억겁의 카탈리스트,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3803.png,14,5,35.71,3803.0,"['Health', 'HealthRegen', 'Mana', 'ManaRegen']",False,False,1300.0
+굳건한 의지의 완전한 비스킷,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2010.png,9,3,33.33,2010.0,[],False,True,50.0
+수당,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3400.png,8,7,87.5,3400.0,"['Consumable', 'GoldPer']",False,True,0.0
+대천사의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323003.png,8,1,12.5,223003.0,"['SpellDamage', 'Mana', 'AbilityHaste']",False,True,2500.0
+대천사의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323003.png,8,1,12.5,3003.0,"['SpellDamage', 'Mana', 'AbilityHaste']",False,True,2900.0
+대천사의 지팡이,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/323003.png,8,1,12.5,323003.0,"['SpellDamage', 'Mana', 'AbilityHaste']",False,True,2900.0
+그림자 검,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3179.png,4,2,50.0,3179.0,"['Damage', 'Vision', 'CooldownReduction', 'ArmorPenetration', 'AbilityHaste']",False,True,2500.0
+강철의 영약,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2138.png,2,1,50.0,2138.0,"['Health', 'Consumable', 'NonbootsMovement', 'Tenacity']",False,True,500.0
+분노의 영약,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2140.png,2,0,0.0,2140.0,"['Consumable', 'Damage', 'LifeSteal', 'SpellVamp']",False,True,500.0
+힘의 영약,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2152.png,1,1,100.0,2152.0,"['Consumable', 'Tenacity']",False,True,50.0
+건메탈 군화,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3172.png,1,0,0.0,3172.0,"['AttackSpeed', 'NonbootsMovement']",False,True,1600.0
+마법의 영약,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/2139.png,1,0,0.0,2139.0,"['Consumable', 'ManaRegen', 'SpellDamage']",False,True,500.0
+칼리스타의 칠흑의 창,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3600.png,1,0,0.0,3599.0,['Consumable'],False,True,0.0
+칼리스타의 칠흑의 창,https://ddragon.leagueoflegends.com/cdn/15.16.1/img/item/3600.png,1,0,0.0,3600.0,['Consumable'],False,True,0.0
