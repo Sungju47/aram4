@@ -217,16 +217,26 @@ if games and item_cols:
     else:
         st.info("3개 코어템을 완성한 게임이 없습니다.")
         
-# ===== 아이템 추천 =====
-st.subheader("아이템 통계")
+# ===== 아이템 추천 (코어템만) =====
+st.subheader("코어템 통계")
+
 if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
+    df_items = pd.read_csv(ITEM_SUM_CSV)  # item, is_core, is_boots 컬럼 포함
     stacks = []
-    for c in [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]:
+    item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
+    
+    for c in item_cols:
         stacks.append(dsel[[c, "win_clean"]].rename(columns={c: "item"}))
     union = pd.concat(stacks, ignore_index=True)
+    
+    # 공백, 0, 포로 간식 제거
     union = union[union["item"].astype(str).str.strip() != ""]
-    union = union[~union["item"].isin(["", "0", "포로 간식"])]
+    union = union[~union["item"].isin(["0", "포로 간식"])]
 
+    # CSV 기준 코어템 + 부츠 제외
+    union = union[union["item"].isin(
+        df_items.loc[df_items["is_core"] & (~df_items["is_boots"]), "item"]
+    )]
 
     top_items = (
         union.groupby("item")
@@ -242,7 +252,10 @@ if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
         use_container_width=True,
         column_config={
             "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
-            "item": "아이템", "total_picks": "픽수", "wins": "승수", "win_rate": "승률(%)"
+            "item": "아이템",
+            "total_picks": "픽수",
+            "wins": "승수",
+            "win_rate": "승률(%)"
         }
     )
 else:
