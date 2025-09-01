@@ -149,29 +149,34 @@ c3.metric("Pick Rate", f"{pickrate}%")
 # ===== 코어템 3개 조합 추천 =====
 st.subheader("3코어 조합 통계")
 
-BOOT_KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화","군화","물약","영약"]
+KEYWORDS = ["boots","greaves","shoes","sandals","신발","발걸음","장화","군화","물약","영약"]
 
 def is_boot(item: str) -> bool:
     item_l = str(item).lower()
-    return any(b in item_l for b in BOOT_KEYWORDS)
+    return any(b in item_l for b in KEYWORDS)
 
-# 코어 아이템 이름 집합
+# dsel: 선택 챔피언 데이터 (이미 필터링된 DataFrame)
+# df_items: item_summary CSV (name, is_core, is_boot 컬럼 포함)
 
-# CSV 기준 필터
-items = [row[c] for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
-items = [i for i in items if i and not df_items.loc[df_items["name"]==i, "is_boot"].any()]
-items = [i for i in items if i and df_items.loc[df_items["name"]==i, "is_core"].any()]
-core = items[:3]  # 순서 유지
+item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
 
-if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
+if games and item_cols:
     core_builds = []
 
     for _, row in dsel.iterrows():
         # 아이템 리스트
-        items = [row[c] for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
-        items = [i for i in items if i and not is_boot(i)]        # 신발 제외
-        items = [i for i in items if i in df_core_item_names]     # 코어아이템만
-        core = items[:3]  # 순서 유관하게 첫 3개만
+        items = [row[c] for c in item_cols]
+
+        # 1) 신발 제외 2) CSV 기준 코어템만
+        items = [
+            i for i in items 
+            if i 
+            and not df_items.loc[df_items["name"]==i, "is_boot"].any() 
+            and df_items.loc[df_items["name"]==i, "is_core"].any()
+        ]
+
+        # 순서 유지, 첫 3개
+        core = items[:3]
         if len(core) == 3:
             core_builds.append((tuple(core), row["win_clean"]))
 
@@ -181,6 +186,7 @@ if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
         core_df["core2"] = core_df["core"].apply(lambda x: x[1])
         core_df["core3"] = core_df["core"].apply(lambda x: x[2])
 
+        # 조합별 통계
         builds = (
             core_df.groupby(["core1","core2","core3"])
             .agg(games=("win_clean","count"), wins=("win_clean","sum"))
@@ -194,9 +200,10 @@ if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
         builds["core2_icon"] = builds["core2"].map(ITEM_ICON_MAP)
         builds["core3_icon"] = builds["core3"].map(ITEM_ICON_MAP)
 
-        # 🔹 정렬: 픽률 내림차순 → 승률 내림차순
+        # 정렬: 픽률 내림차순 → 승률 내림차순, 상위 3개
         builds = builds.sort_values(["pick_rate","win_rate"], ascending=[False, False]).head(3)
 
+        # Streamlit 출력
         st.dataframe(
             builds[[
                 "core1_icon","core1","core2_icon","core2","core3_icon","core3",
