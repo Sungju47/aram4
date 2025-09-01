@@ -203,7 +203,7 @@ if games and item_cols:
             builds.reset_index(drop=True)[[
                 "core1_icon","core1","core2_icon","core2","core3_icon","core3",
                 "pick_rate","win_rate","games",
-            ]],
+            ]].to_dict("records"),
             use_container_width=True,
             column_config={
                 "core1_icon": st.column_config.ImageColumn("코어1", width="small"),
