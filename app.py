@@ -217,49 +217,60 @@ if games and item_cols:
     else:
         st.info("3개 코어템을 완성한 게임이 없습니다.")
         
-# ===== 아이템 추천 (코어템만) =====
-st.subheader("코어템 통계")
+# ===== 코어템 통계 =====
+st.subheader("코어템 통계 (부츠/포로 간식 제외)")
 
-if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
-    df_items = pd.read_csv(ITEM_SUM_CSV)  # item, is_core, is_boots 컬럼 포함
+# CSV 불러오기
+df_items = pd.read_csv(ITEM_SUM_CSV)
+
+# bool로 변환 (문자열, int 모두 처리)
+df_items["is_core"]  = df_items["is_core"].astype(bool)
+df_items["is_boots"] = df_items["is_boots"].astype(bool)
+
+# 코어템 + 부츠 제외
+core_items_set = set(df_items.loc[df_items["is_core"] & (~df_items["is_boots"]), "item"])
+
+# dsel에서 아이템 컬럼만 추출
+item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
+
+if games and item_cols:
     stacks = []
-    item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
-    
     for c in item_cols:
-        stacks.append(dsel[[c, "win_clean"]].rename(columns={c: "item"}))
-    union = pd.concat(stacks, ignore_index=True)
-    
-    # 공백, 0, 포로 간식 제거
-    union = union[union["item"].astype(str).str.strip() != ""]
-    union = union[~union["item"].isin(["0", "포로 간식"])]
+        tmp = dsel[[c, "win_clean"]].rename(columns={c: "item"})
+        # 1) 비어있는 값 제거, 2) 포로 간식 제외, 3) 코어템 필터링
+        tmp = tmp[tmp["item"].astype(str).str.strip() != ""]
+        tmp = tmp[~tmp["item"].isin(["포로 간식"])]
+        tmp = tmp[tmp["item"].isin(core_items_set)]
+        stacks.append(tmp)
 
-    # CSV 기준 코어템 + 부츠 제외
-    union = union[union["item"].isin(
-        df_items.loc[df_items["is_core"] & (~df_items["is_boots"]), "item"]
-    )]
+    if stacks:
+        union = pd.concat(stacks, ignore_index=True)
 
-    top_items = (
-        union.groupby("item")
-        .agg(total_picks=("item","count"), wins=("win_clean","sum"))
-        .reset_index()
-    )
-    top_items["win_rate"] = (top_items["wins"]/top_items["total_picks"]*100).round(2)
-    top_items["icon_url"] = top_items["item"].map(ITEM_ICON_MAP)
-    top_items = top_items.sort_values(["total_picks","win_rate"], ascending=[False, False]).head(20)
+        top_items = (
+            union.groupby("item")
+            .agg(total_picks=("item","count"), wins=("win_clean","sum"))
+            .reset_index()
+        )
+        top_items["win_rate"] = (top_items["wins"]/top_items["total_picks"]*100).round(2)
+        top_items["icon_url"] = top_items["item"].map(ITEM_ICON_MAP)
+        top_items = top_items.sort_values(["total_picks","win_rate"], ascending=[False, False]).head(20)
 
-    st.dataframe(
-        top_items[["icon_url","item","total_picks","wins","win_rate"]],
-        use_container_width=True,
-        column_config={
-            "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
-            "item": "아이템",
-            "total_picks": "픽수",
-            "wins": "승수",
-            "win_rate": "승률(%)"
-        }
-    )
+        st.dataframe(
+            top_items[["icon_url","item","total_picks","wins","win_rate"]],
+            use_container_width=True,
+            column_config={
+                "icon_url": st.column_config.ImageColumn("아이콘", width="small"),
+                "item": "아이템",
+                "total_picks": "픽수",
+                "wins": "승수",
+                "win_rate": "승률(%)"
+            }
+        )
+    else:
+        st.info("선택 챔피언의 코어템 데이터가 없습니다.")
 else:
     st.info("아이템 이름 컬럼(item0_name~item6_name)이 없어 챔피언별 아이템 집계를 만들 수 없습니다.")
+
 
 # ===== 스펠 추천 (무순서 집계) =====
 st.subheader("스펠 통계")
