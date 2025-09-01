@@ -162,6 +162,10 @@ if games and any(re.fullmatch(r"item[0-6]_name", c) for c in dsel.columns):
         stacks.append(dsel[[c, "win_clean"]].rename(columns={c: "item"}))
     union = pd.concat(stacks, ignore_index=True)
     union = union[union["item"].astype(str).str.strip() != ""]
+
+    # 🔹 의미 없는 아이템 제거
+    union = union[~union["item"].astype(str).str.lower().isin(["idrk", "55", "0"])]
+    
     top_items = (
         union.groupby("item")
         .agg(total_picks=("item","count"), wins=("win_clean","sum"))
@@ -242,17 +246,23 @@ def pick_spell_cols(df_):
 s1, s2 = pick_spell_cols(dsel)
 if games and s1 and s2:
     sp = (
-        dsel.groupby([s1, s2])
+        dsel.assign(spell_combo=dsel[[s1, s2]].apply(lambda x: frozenset([x[s1], x[s2]]), axis=1))
+        .groupby("spell_combo")
         .agg(games=("win_clean","count"), wins=("win_clean","sum"))
         .reset_index()
     )
     sp["win_rate"] = (sp["wins"]/sp["games"]*100).round(2)
+
+    # 🔹 대표 스펠명 추출 (순서 정렬 후 표시)
+    sp["sp1"] = sp["spell_combo"].apply(lambda x: sorted(list(x))[0] if len(x) > 0 else "")
+    sp["sp2"] = sp["spell_combo"].apply(lambda x: sorted(list(x))[1] if len(x) > 1 else "")
+    
     sp = sp.sort_values(["games","win_rate"], ascending=[False,False]).head(10)
-    sp["spell1_icon"] = sp[s1].apply(resolve_spell_icon)
-    sp["spell2_icon"] = sp[s2].apply(resolve_spell_icon)
+    sp["spell1_icon"] = sp["s1"].apply(resolve_spell_icon)
+    sp["spell2_icon"] = sp["s2"].apply(resolve_spell_icon)
 
     st.dataframe(
-        sp[["spell1_icon", s1, "spell2_icon", s2, "games", "wins", "win_rate"]],
+        sp[["spell1_icon", "s1", "spell2_icon", "s2", "games", "wins", "win_rate"]],
         use_container_width=True,
         column_config={
             "spell1_icon": st.column_config.ImageColumn("스펠1", width="small"),
