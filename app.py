@@ -150,7 +150,7 @@ c3.metric("Pick Rate", f"{pickrate}%")
 st.subheader("3코어 조합 통계")
 
 # dsel: 선택 챔피언 데이터 (이미 필터링된 DataFrame)
-# df_items: item_summary CSV (item, is_core, is_boot 컬럼 포함)
+# df_items: item_summary CSV (item, is_core, is_boots 컬럼 포함)
 df_items = pd.read_csv(ITEM_SUM_CSV)
 
 item_cols = [c for c in dsel.columns if re.fullmatch(r"item[0-6]_name", c)]
@@ -160,7 +160,7 @@ def is_core_item(item_name: str) -> bool:
     sub = df_items[df_items["item"] == item_name]
     if sub.empty:
         return False
-    return bool(sub["is_core"].any()) and not bool(sub["is_boot"].any())
+    return bool(sub["is_core"].any()) and not bool(sub["is_boots"].any())
 
 if games and item_cols:
     core_builds = []
